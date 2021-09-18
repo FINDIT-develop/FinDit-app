@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:moic/constants.dart';
 import 'package:moic/models/Product.dart';
 
 import 'add_to_cart.dart';
-import 'color_and_size.dart';
-import 'counter_with_fav_btn.dart';
-import 'description.dart';
-import 'product_title_with_image.dart';
+import 'product_image.dart';
+import 'product_intro.dart';
 
 class Body extends StatelessWidget {
   final Product product;
@@ -16,46 +15,50 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     // It provide us total height and width
     Size size = MediaQuery.of(context).size;
-    return SingleChildScrollView(
-      child: Column(
-        children: <Widget>[
-          SizedBox(
-            height: size.height,
-            child: Stack(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(top: size.height * 0.3),
-                  padding: EdgeInsets.only(
-                    top: size.height * 0.12,
-                    left: kDefaultPadding,
-                    right: kDefaultPadding,
-                  ),
-                  // height: 500,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(24),
-                      topRight: Radius.circular(24),
+    return Stack(
+      children: [
+        SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: size.height,
+                child: Stack(
+                  children: <Widget>[
+                    ProductImage(product: product),
+                    Container(
+                      margin: EdgeInsets.only(top: size.height * 0.5),
+                      padding: EdgeInsets.only(
+                        top: 30,
+                        left: kDefaultPadding,
+                        right: kDefaultPadding,
+                      ),
+                      // height: 500,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(24),
+                          topRight: Radius.circular(24),
+                        ),
+                      ),
+                      child: Column(
+                        children: <Widget>[
+                          ProductIntro(product: product),
+                        ],
+                      ),
                     ),
-                  ),
-                  child: Column(
-                    children: <Widget>[
-                      ColorAndSize(product: product),
-                      SizedBox(height: kDefaultPadding / 2),
-                      Description(product: product),
-                      SizedBox(height: kDefaultPadding / 2),
-                      CounterWithFavBtn(),
-                      SizedBox(height: kDefaultPadding / 2),
-                      AddToCart(product: product)
-                    ],
-                  ),
+                  ],
                 ),
-                ProductTitleWithImage(product: product)
-              ],
-            ),
-          )
-        ],
-      ),
+              )
+            ],
+          ),
+        ),
+        Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: AddToCart(product: product),
+            ))
+      ],
     );
   }
 }

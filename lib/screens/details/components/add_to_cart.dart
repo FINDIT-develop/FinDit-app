@@ -18,36 +18,25 @@ class AddToCart extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
       child: Row(
         children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(right: kDefaultPadding),
-            height: 50,
-            width: 58,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(
-                color: product.color,
-              ),
+          IconButton(
+            icon: SvgPicture.asset(
+              "assets/icons/like.svg",
+              color: kActiveColor,
             ),
-            child: IconButton(
-              icon: SvgPicture.asset(
-                "assets/icons/add_to_cart.svg",
-                color: product.color,
-              ),
-              onPressed: () {},
-            ),
+            onPressed: () {},
           ),
           Expanded(
             child: SizedBox(
               height: 50,
               child: FlatButton(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18)),
-                color: product.color,
+                    borderRadius: BorderRadius.circular(10)),
+                color: kActiveColor,
                 onPressed: () {},
                 child: Text(
-                  "Buy  Now".toUpperCase(),
+                  "구매 사이트 바로가기",
                   style: TextStyle(
-                    fontSize: 17,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),

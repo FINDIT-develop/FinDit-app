@@ -12,7 +12,7 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // each product have a color
-      backgroundColor: product.color,
+      backgroundColor: Colors.white,
       appBar: buildAppBar(context),
       body: Body(product: product),
     );
@@ -20,22 +20,27 @@ class DetailsScreen extends StatelessWidget {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: product.color,
+      backgroundColor: Colors.white,
       elevation: 0,
       leading: IconButton(
-        icon: SvgPicture.asset(
-          'assets/icons/back.svg',
-          color: Colors.white,
-        ),
+        icon: SvgPicture.asset("assets/icons/back.svg"),
         onPressed: () => Navigator.pop(context),
       ),
       actions: <Widget>[
         IconButton(
-          icon: SvgPicture.asset("assets/icons/search.svg"),
+          icon: SvgPicture.asset(
+            "assets/icons/search.svg",
+            // By default our  icon color is white
+            color: kTextColor,
+          ),
           onPressed: () {},
         ),
         IconButton(
-          icon: SvgPicture.asset("assets/icons/cart.svg"),
+          icon: SvgPicture.asset(
+            "assets/icons/cart.svg",
+            // By default our  icon color is white
+            color: kTextColor,
+          ),
           onPressed: () {},
         ),
         SizedBox(width: kDefaultPadding / 2)
