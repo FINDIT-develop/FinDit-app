@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:moic/constants.dart';
+import 'package:moic/screens/home/home_screen.dart';
+import 'package:moic/screens/like/like_screen.dart';
+import 'package:moic/screens/mypage/mypage_screen.dart';
 import 'package:moic/screens/store/store_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -24,13 +27,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
   void initState() {
     super.initState();
     _screens = [
+      HomeScreen(),
       StoreScreen(),
-      StoreScreen(),
-      StoreScreen(),
-      StoreScreen(),
-      //VirginCocktailScreen(widget.user),
-      //MyCockScreen(widget.user),
-      //ProfileScreen(widget.user),
+      LikeScreen(),
+      MyPageScreen(),
     ];
   }
 
@@ -47,8 +47,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
         selectedFontSize: 10,
         unselectedFontSize: 10,
         //iconSize: 11,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         type: BottomNavigationBarType.fixed,
         items: List.generate(
           _navitems.length,
@@ -72,8 +72,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
   SvgPicture buildSvgIcon({@required String src, bool isActive = false}) {
     return SvgPicture.asset(
       src,
-      width: 20,
-      height: 20,
+      width: 25,
+      height: 25,
       color: kActiveColor,
     );
   }

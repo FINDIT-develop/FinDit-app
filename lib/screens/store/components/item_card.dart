@@ -21,6 +21,7 @@ class ItemCard extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Container(
+              margin: EdgeInsets.only(top: 20),
               padding: EdgeInsets.all(kDefaultPadding),
               // For  demo we use fixed height  and width
               // Now we dont need them
@@ -38,7 +39,7 @@ class ItemCard extends StatelessWidget {
             child: Text(
               // products is out demo list
               product.title,
-              style: TextStyle(color: kTextLightColor),
+              style: TextStyle(color: kTextLightColor, fontSize: 15),
             ),
           ),
           Text(

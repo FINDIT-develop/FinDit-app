@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:moic/screens/bottomnavbar.dart';
-import 'package:moic/screens/store/store_screen.dart';
-import 'constants.dart';
+import 'package:moic/theme.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,13 +11,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        theme: ThemeData(
-          textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
+        theme: theme(),
         home: BottomNavBar());
   }
 }
