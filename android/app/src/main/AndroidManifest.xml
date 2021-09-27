@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.moic">
+    package="com.example.FinDit">
    <application
-        android:label="moic"
+        android:label="FinDit"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

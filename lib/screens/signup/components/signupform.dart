@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moic/constants.dart';
+import 'package:FinDit/constants.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key key}) : super(key: key);
@@ -16,11 +16,16 @@ class _SignUpFormState extends State<SignUpForm> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "SIGN UP",
+          "회원가입",
           style: TextStyle(
-              color: kActiveColor, fontSize: 30, fontWeight: FontWeight.bold),
+            //fontFamily: 'Montserrat',
+            color: kActiveColor,
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+            //fontStyle: FontStyle.italic
+          ),
         ),
-        SizedBox(height: 50.0),
+        SizedBox(height: 40.0),
         TextField(
           decoration: InputDecoration(
               contentPadding: EdgeInsets.all(10),

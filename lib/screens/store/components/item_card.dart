@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moic/models/Product.dart';
+import 'package:FinDit/models/Product.dart';
 
 import '../../../constants.dart';
 

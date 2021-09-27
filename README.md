@@ -1,4 +1,4 @@
-# moic
+# FinDit
 
 A new Flutter project.
 

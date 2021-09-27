@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moic/constants.dart';
-import 'package:moic/widgets/appbar.dart';
+import 'package:FinDit/constants.dart';
+import 'package:FinDit/widgets/appbar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key key}) : super(key: key);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moic/constants.dart';
+import 'package:FinDit/constants.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({Key key}) : super(key: key);
@@ -13,10 +13,10 @@ class _SignInFormState extends State<SignInForm> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          "FINDIT",
-          style: TextStyle(
-              color: kActiveColor, fontSize: 30, fontWeight: FontWeight.bold),
+        SizedBox(height: 50),
+        Image.asset(
+          "assets/icons/findit_logo.png",
+          scale: 2,
         ),
         SizedBox(height: 50.0),
         TextField(
@@ -58,10 +58,10 @@ class _SignInFormState extends State<SignInForm> {
                 child: Text(
                   '로그인',
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Montserrat'),
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),

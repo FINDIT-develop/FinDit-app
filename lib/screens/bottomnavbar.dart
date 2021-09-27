@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:moic/constants.dart';
-import 'package:moic/screens/home/home_screen.dart';
-import 'package:moic/screens/like/like_screen.dart';
-import 'package:moic/screens/mypage/mypage_screen.dart';
-import 'package:moic/screens/store/store_screen.dart';
+import 'package:FinDit/constants.dart';
+import 'package:FinDit/screens/home/home_screen.dart';
+import 'package:FinDit/screens/like/like_screen.dart';
+import 'package:FinDit/screens/mypage/mypage_screen.dart';
+import 'package:FinDit/screens/store/store_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomNavBar extends StatefulWidget {

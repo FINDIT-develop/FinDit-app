@@ -1,6 +1,6 @@
 {
-    "name": "moic",
-    "short_name": "moic",
+    "name": "FinDit",
+    "short_name": "FinDit",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

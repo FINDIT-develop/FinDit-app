@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:moic/constants.dart';
+import 'package:FinDit/constants.dart';
 
 import 'components/signupform.dart';
 

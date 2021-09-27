@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:moic/constants.dart';
+import 'package:FinDit/constants.dart';
 
 AppBar buildAppBar() {
   return AppBar(

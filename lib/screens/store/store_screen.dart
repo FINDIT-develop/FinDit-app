@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:moic/constants.dart';
-import 'package:moic/screens/store/components/body.dart';
+import 'package:FinDit/constants.dart';
+import 'package:FinDit/screens/store/components/body.dart';
 
 class StoreScreen extends StatelessWidget {
   @override
