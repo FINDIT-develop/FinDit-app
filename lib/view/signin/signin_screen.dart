@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:FinDit/constants.dart';
-import 'package:FinDit/screens/signin/components/signinform.dart';
-import 'package:FinDit/screens/signup/signup_screen.dart';
+import 'package:FinDit/view/signin/components/signinform.dart';
+import 'package:FinDit/view/signup/signup_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({Key key}) : super(key: key);
@@ -10,7 +10,16 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () => Get.back(),
+          ),
+          SizedBox(width: kDefaultPadding / 2)
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(kDefaultPadding),
         child: Column(children: [

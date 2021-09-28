@@ -1,7 +1,7 @@
+import 'package:FinDit/model/Product.dart';
 import 'package:flutter/material.dart';
 import 'package:FinDit/constants.dart';
-import 'package:FinDit/models/Product.dart';
-import 'package:FinDit/screens/details/details_screen.dart';
+import 'package:FinDit/view/details/details_screen.dart';
 
 import 'categorries.dart';
 import 'item_card.dart';

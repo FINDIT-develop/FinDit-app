@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:FinDit/screens/bottomnavbar.dart';
+import 'package:FinDit/view/bottomnavbar.dart';
 import 'package:FinDit/theme.dart';
 
 void main() {

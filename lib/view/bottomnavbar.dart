@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:FinDit/constants.dart';
-import 'package:FinDit/screens/home/home_screen.dart';
-import 'package:FinDit/screens/like/like_screen.dart';
-import 'package:FinDit/screens/mypage/mypage_screen.dart';
-import 'package:FinDit/screens/store/store_screen.dart';
+import 'package:FinDit/view/home/home_screen.dart';
+import 'package:FinDit/view/like/like_screen.dart';
+import 'package:FinDit/view/mypage/mypage_screen.dart';
+import 'package:FinDit/view/store/store_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -16,17 +16,33 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
 
   List<Map<String, dynamic>> _navitems = [
-    {"icon": "assets/icons/home.svg", "title": "HOME"},
-    {"icon": "assets/icons/store.svg", "title": "STORE"},
-    {"icon": "assets/icons/like.svg", "title": "LIKE"},
-    {"icon": "assets/icons/my.svg", "title": "MY"},
+    {
+      "icon": "assets/icons/home.svg",
+      "active_icon": "assets/icons/home_active.svg",
+      "title": "HOME"
+    },
+    {
+      "icon": "assets/icons/store.svg",
+      "active_icon": "assets/icons/store_active.svg",
+      "title": "STORE"
+    },
+    {
+      "icon": "assets/icons/like.svg",
+      "active_icon": "assets/icons/like_active.svg",
+      "title": "LIKE"
+    },
+    {
+      "icon": "assets/icons/my.svg",
+      "active_icon": "assets/icons/home_active.svg",
+      "title": "MY"
+    },
   ];
 
-  List<Widget> _screens;
+  List<Widget> _view;
   @override
   void initState() {
     super.initState();
-    _screens = [
+    _view = [
       HomeScreen(),
       StoreScreen(),
       LikeScreen(),
@@ -37,15 +53,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _screens[_selectedIndex],
+      body: _view[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onItemTapped,
         currentIndex: _selectedIndex,
         backgroundColor: Colors.white,
         unselectedItemColor: kActiveColor,
         selectedItemColor: kActiveColor,
-        selectedFontSize: 10,
-        unselectedFontSize: 10,
         //iconSize: 11,
         showSelectedLabels: false,
         showUnselectedLabels: false,
@@ -55,7 +69,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
           (index) => BottomNavigationBarItem(
             icon: buildSvgIcon(
                 src: _navitems[index]['icon'],
-                isActive: _selectedIndex == index),
+                isActive: index == _selectedIndex),
+            activeIcon: buildSvgIcon(
+                src: _navitems[index]['active_icon'],
+                isActive: index == _selectedIndex),
             label: _navitems[index]["title"],
           ),
         ),

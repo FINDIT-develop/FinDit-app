@@ -10,20 +10,16 @@ AppBar buildAppBar() {
     //   icon: SvgPicture.asset("assets/icons/back.svg"),
     //   onPressed: () {},
     // ),
+    title: Image.asset(
+      "assets/icons/findit_logo.png",
+      scale: 3,
+    ),
     actions: <Widget>[
       IconButton(
         icon: SvgPicture.asset(
           "assets/icons/search.svg",
           // By default our  icon color is white
-          color: kTextColor,
-        ),
-        onPressed: () {},
-      ),
-      IconButton(
-        icon: SvgPicture.asset(
-          "assets/icons/cart.svg",
-          // By default our  icon color is white
-          color: kTextColor,
+          color: kActiveColor,
         ),
         onPressed: () {},
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:FinDit/models/Product.dart';
+import 'package:FinDit/model/Product.dart';
 
 import '../../../constants.dart';
 

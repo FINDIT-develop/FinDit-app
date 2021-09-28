@@ -1,8 +1,8 @@
+import 'package:FinDit/model/Product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:FinDit/constants.dart';
-import 'package:FinDit/models/Product.dart';
-import 'package:FinDit/screens/details/components/body.dart';
+import 'package:FinDit/view/details/components/body.dart';
 
 class DetailsScreen extends StatelessWidget {
   final Product product;
