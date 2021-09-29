@@ -1,6 +1,7 @@
+import 'package:FinDit/binding/init_binding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:FinDit/view/bottomnavbar.dart';
+import 'package:FinDit/view/app.dart';
 import 'package:FinDit/theme.dart';
 
 void main() {
@@ -12,9 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'FINDIT APP',
-        theme: theme(),
-        home: BottomNavBar());
+      title: 'FinDit APP',
+      theme: theme(),
+      initialRoute: "/",
+      initialBinding: InitBinding(),
+      getPages: [GetPage(name: "/", page: () => App())],
+    );
   }
 }
