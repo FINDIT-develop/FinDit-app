@@ -1,4 +1,4 @@
-import 'package:FinDit/controller/app_controller.dart';
+import 'package:FinDit/controllers/app_controller.dart';
 import 'package:get/get.dart';
 
 class InitBinding implements Bindings {
