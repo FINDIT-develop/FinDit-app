@@ -1,8 +1,11 @@
 import 'package:FinDit/binding/init_binding.dart';
+import 'package:FinDit/screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:FinDit/screens/app.dart';
 import 'package:FinDit/constants/theme.dart';
+
+import 'controllers/search_controller.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,7 +20,16 @@ class MyApp extends StatelessWidget {
       theme: theme(),
       initialRoute: "/",
       initialBinding: InitBinding(),
-      getPages: [GetPage(name: "/", page: () => App())],
+      getPages: [
+        GetPage(name: "/", page: () => App()),
+        GetPage(
+          name: "/search",
+          page: () => SearchScreen(),
+          binding: BindingsBuilder(
+            () => Get.lazyPut<SearchController>(() => SearchController()),
+          ),
+        )
+      ],
     );
   }
 }
