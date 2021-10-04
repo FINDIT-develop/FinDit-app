@@ -1,12 +1,12 @@
 import 'package:FinDit/constants/constants.dart';
 import 'package:FinDit/screens/home/components/banner.dart';
 import 'package:FinDit/screens/home/components/categories.dart';
-import 'package:FinDit/screens/home/components/video.dart';
-import 'package:FinDit/screens/widget/appbar.dart';
+import 'package:FinDit/screens/home/components/thumbnail.dart';
+import 'package:FinDit/screens/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +35,7 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             Categories(),
-            Video(),
-            Video(),
-            Video()
+            Thumbnail()
           ],
         ),
       ),

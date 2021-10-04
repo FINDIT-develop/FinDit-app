@@ -1,6 +1,5 @@
 import 'package:FinDit/constants/constants.dart';
 import 'package:FinDit/controllers/app_controller.dart';
-import 'package:FinDit/screens/signin/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:FinDit/screens/home/home_screen.dart';
 import 'package:FinDit/screens/like/like_screen.dart';
@@ -10,11 +9,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class App extends GetView<AppController> {
-  const App({Key key}) : super(key: key);
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    bool issignedin = false;
     List<Map<String, dynamic>> _navitems = [
       {
         "icon": "assets/icons/home.svg",
@@ -37,12 +35,7 @@ class App extends GetView<AppController> {
         "title": "MY"
       },
     ];
-    List _view = [
-      HomeScreen(),
-      StoreScreen(),
-      issignedin ? LikeScreen() : SignInScreen(),
-      MyPageScreen()
-    ];
+    List _view = [HomeScreen(), StoreScreen(), LikeScreen(), MyPageScreen()];
     return Scaffold(
         body: Obx(() => _view[controller.currentIndex.value]),
         bottomNavigationBar: Obx(
@@ -70,7 +63,7 @@ class App extends GetView<AppController> {
         ));
   }
 
-  SvgPicture buildSvgIcon({@required String src, bool isActive = false}) {
+  SvgPicture buildSvgIcon({required String src, bool isActive = false}) {
     return SvgPicture.asset(
       src,
       width: 25,

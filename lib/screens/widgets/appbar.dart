@@ -1,6 +1,8 @@
+import 'package:FinDit/screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:FinDit/constants/constants.dart';
+import 'package:get/get.dart';
 
 AppBar buildAppBar() {
   return AppBar(
@@ -21,7 +23,7 @@ AppBar buildAppBar() {
           // By default our  icon color is white
           color: kActiveColor,
         ),
-        onPressed: () {},
+        onPressed: () => Get.to(() => SearchScreen()),
       ),
       SizedBox(width: kDefaultPadding / 2)
     ],

@@ -5,8 +5,8 @@ import 'package:FinDit/constants/constants.dart';
 
 class ProductImage extends StatelessWidget {
   const ProductImage({
-    Key key,
-    @required this.product,
+    Key? key,
+    required this.product,
   }) : super(key: key);
 
   final Product product;

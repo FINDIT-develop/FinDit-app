@@ -1,28 +1,34 @@
 import 'package:FinDit/constants/constants.dart';
+import 'package:FinDit/screens/video_detail/video_detail_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class Video extends StatelessWidget {
-  const Video({Key key}) : super(key: key);
+class Thumbnail extends StatelessWidget {
+  const Thumbnail({Key? key}) : super(key: key);
 
   Widget _thumbnail() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Container(
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          child: CachedNetworkImage(
-              imageUrl: "http://www.kint.kr/design/kint/img/main/cr_ytb_02.png",
-              placeholder: (context, url) => Container(
-                    height: 230,
-                    child: Center(
-                      child: CircularProgressIndicator(),
+    return GestureDetector(
+      onTap: () => Get.to(() => VideoDetailScreen()),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            child: CachedNetworkImage(
+                imageUrl:
+                    "http://www.kint.kr/design/kint/img/main/cr_ytb_02.png",
+                placeholder: (context, url) => Container(
+                      height: 230,
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
                     ),
-                  ),
-              fit: BoxFit.fitWidth),
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-        ),
-      ],
+                fit: BoxFit.fitWidth),
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+          ),
+        ],
+      ),
     );
   }
 

@@ -5,7 +5,7 @@ import 'package:FinDit/screens/signin/components/signinform.dart';
 import 'package:FinDit/screens/signup/signup_screen.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({Key key}) : super(key: key);
+  const SignInScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

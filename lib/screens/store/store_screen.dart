@@ -1,4 +1,4 @@
-import 'package:FinDit/screens/widget/appbar.dart';
+import 'package:FinDit/screens/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:FinDit/screens/store/components/body.dart';

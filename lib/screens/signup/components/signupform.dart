@@ -1,17 +1,36 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:FinDit/constants/constants.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({Key key}) : super(key: key);
+  const SignUpForm({Key ?key}) : super(key: key);
 
   @override
   _SignUpFormState createState() => _SignUpFormState();
 }
 
 class _SignUpFormState extends State<SignUpForm> {
+  void getWeatherData() async {
+    try {
+      var dio = Dio(BaseOptions(baseUrl: "http://127.0.0.1:3000/app/"));
+
+      var response = await dio.get('/test');
+
+      if (response.statusCode == 200) {
+        print(response.data);
+      } else {
+        print("Error!");
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   bool isChecked = false;
   @override
   Widget build(BuildContext context) {
+    // build 될 때 실행
+    getWeatherData();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -98,7 +117,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   value: isChecked,
                   onChanged: (value) {
                     setState(() {
-                      isChecked = value;
+                      isChecked = value!;
                     });
                   }),
               Text("전체동의")
@@ -114,7 +133,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   value: isChecked,
                   onChanged: (value) {
                     setState(() {
-                      isChecked = value;
+                      isChecked = value!;
                     });
                   }),
               Text("이용약관에 동의합니다.")
@@ -129,7 +148,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   value: isChecked,
                   onChanged: (value) {
                     setState(() {
-                      isChecked = value;
+                      isChecked = value!;
                     });
                   }),
               Text("개인정보 수집 및 이용에 동의합니다.")

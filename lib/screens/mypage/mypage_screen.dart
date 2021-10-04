@@ -1,11 +1,11 @@
-import 'package:FinDit/screens/widget/appbar.dart';
+import 'package:FinDit/screens/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 
 import 'components/profile_menu.dart';
 import 'components/profile_pic.dart';
 
 class MyPageScreen extends StatelessWidget {
-  const MyPageScreen({Key key}) : super(key: key);
+  const MyPageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
-
 class ProfileMenu extends StatelessWidget {
   const ProfileMenu({
-    Key key,
-    String this.text,
-    String this.icon,
-    this.press,
+    Key? key,
+    required this.text,
+    required this.press,
   }) : super(key: key);
 
-  final String text, icon;
+  final String text;
   final VoidCallback press;
 
   @override

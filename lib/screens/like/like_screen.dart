@@ -1,25 +1,28 @@
-import 'package:FinDit/screens/widget/appbar.dart';
+import 'package:FinDit/screens/like/components/like_categry.dart';
+import 'package:FinDit/screens/widgets/appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
-import 'package:FinDit/screens/signin/signin_screen.dart';
 
 import 'package:FinDit/constants/constants.dart';
 
 class LikeScreen extends StatelessWidget {
-  const LikeScreen({Key key}) : super(key: key);
+  const LikeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    bool islogedin = false;
     return Scaffold(
       appBar: buildAppBar(),
-      body: Padding(
-        padding: const EdgeInsets.all(kDefaultPadding),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 200,
-            ),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(kDefaultPadding),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(child: LikeCategory()),
+              Expanded(child: Column())
+            ],
+          ),
         ),
       ),
     );

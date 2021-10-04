@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({
-    Key key,
+    Key ?key,
   }) : super(key: key);
 
   @override

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:FinDit/constants/constants.dart';
 
 class SignInForm extends StatefulWidget {
-  const SignInForm({Key key}) : super(key: key);
+  const SignInForm({Key ? key}) : super(key: key);
 
   @override
   _SignInFormState createState() => _SignInFormState();
