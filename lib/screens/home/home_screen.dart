@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
                 title: buildAppBar(),
                 floating: true,
                 snap: false,
-                pinned: true,
+                //pinned: true,
                 titleSpacing: 0,
               ),
               const SliverToBoxAdapter(
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                 floating: false,
                 snap: false,
                 pinned: true,
-                // toolbarHeight: 50,
+                toolbarHeight: 50,
                 titleSpacing: 0,
               ),
               SliverList(

@@ -2,10 +2,11 @@ import 'package:FinDit/constants/constants.dart';
 import 'package:FinDit/models/Product.dart';
 import 'package:FinDit/screens/details/details_screen.dart';
 import 'package:FinDit/screens/store/components/item_card.dart';
+import 'package:FinDit/screens/widgets/video_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'components/video.dart';
+
 
 class VideoDetailScreen extends StatelessWidget {
   const VideoDetailScreen({Key? key}) : super(key: key);
@@ -109,7 +110,7 @@ class VideoDetailScreen extends StatelessWidget {
           children: [
             Container(
               height: 230,
-              child: Video(),
+              child: VideoPlayer(),
             ),
             Expanded(
               child: _description(),

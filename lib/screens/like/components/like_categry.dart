@@ -1,3 +1,5 @@
+import 'package:FinDit/constants/size_config.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
@@ -16,7 +18,7 @@ class _LikeCategoryState extends State<LikeCategory> {
   Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        height: 25,
+        height: 50,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: LikeCategory.length,
@@ -40,15 +42,17 @@ class _LikeCategoryState extends State<LikeCategory> {
             LikeCategory[index],
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 15,
+              fontSize: 17,
               color: selectedIndex == index ? kTextColor : kTextLightColor,
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(top: kDefaultPadding / 4), //top padding 5
-            height: 2,
-            width: 150,
-            color: selectedIndex == index ? Colors.black : Colors.transparent,
+          Center(
+            child: Container(
+              margin: EdgeInsets.only(top: kDefaultPadding / 4), //top padding 5
+              height: 2,
+              width: 190,
+              color: selectedIndex == index ? Colors.black : Colors.transparent,
+            ),
           )
         ],
       ),

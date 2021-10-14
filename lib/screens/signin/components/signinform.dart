@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:FinDit/constants/constants.dart';
 
 class SignInForm extends StatefulWidget {
-  const SignInForm({Key ? key}) : super(key: key);
+  const SignInForm({Key? key}) : super(key: key);
 
   @override
   _SignInFormState createState() => _SignInFormState();
@@ -12,11 +12,18 @@ class _SignInFormState extends State<SignInForm> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(height: 50),
-        Image.asset(
-          "assets/icons/findit_logo.png",
-          scale: 2,
+        SizedBox(height: 80),
+        Text(
+          "반가워요!",
+          style: TextStyle(fontSize: 17, color: kActiveColor),
+        ),
+        SizedBox(height: 5),
+        Text(
+          "핀딧에서 궁금했던 옷을 찾아보세요 :)",
+          style: TextStyle(
+              fontSize: 20, fontWeight: FontWeight.bold, color: kActiveColor),
         ),
         SizedBox(height: 50.0),
         TextField(

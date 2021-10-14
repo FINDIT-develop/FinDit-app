@@ -11,20 +11,40 @@ class LikeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     bool islogedin = false;
     return Scaffold(
-      appBar: buildAppBar(),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(kDefaultPadding),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(child: LikeCategory()),
-              Expanded(child: Column())
-            ],
+        body: SafeArea(
+            child: CustomScrollView(slivers: [
+      SliverAppBar(
+        title: AppBar(
+          title: Text(
+            "좋아요",
+            style: TextStyle(
+                color: kPrimaryColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 17),
           ),
         ),
+        floating: true,
+        snap: false,
+        titleSpacing: 0,
       ),
-    );
+      SliverAppBar(
+        title: LikeCategory(),
+        floating: true,
+        snap: false,
+        pinned: true,
+        titleSpacing: 0,
+      ),
+      // Padding(
+      //   padding: const EdgeInsets.all(kDefaultPadding),
+      //   child: Column(
+      //     mainAxisAlignment: MainAxisAlignment.center,
+      //     crossAxisAlignment: CrossAxisAlignment.center,
+      //     children: [
+      //       Center(child: LikeCategory()),
+      //       Expanded(child: Column())
+      //     ],
+      //   ),
+      // ),
+    ])));
   }
 }

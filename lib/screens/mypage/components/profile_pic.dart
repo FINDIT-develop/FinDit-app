@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({
-    Key ?key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -14,13 +14,38 @@ class ProfilePic extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
       height: 230,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 70),
-          Text(
-            "나만의 옷을 찾고 싶다면, \n지금 로그인 해보세요!",
-            style: TextStyle(fontSize: 16),
+          SizedBox(height: 30),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 30),
+                Row(
+                  children: [
+                    Text(
+                      "로그인 / 회원가입 ",
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: kPrimaryColor,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 20,
+                    )
+                  ],
+                ),
+                Text(
+                  "로그인 후 핀딧을 즐겨보세요 :)",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ],
+            ),
           ),
-          SizedBox(height: 40),
+          SizedBox(height: 20),
           Container(
             height: 50.0,
             child: Material(

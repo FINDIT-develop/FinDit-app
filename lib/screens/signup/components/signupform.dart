@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:FinDit/constants/constants.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({Key ?key}) : super(key: key);
+  const SignUpForm({Key? key}) : super(key: key);
 
   @override
   _SignUpFormState createState() => _SignUpFormState();
