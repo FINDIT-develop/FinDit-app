@@ -3,6 +3,7 @@ import 'package:FinDit/constants/theme.dart';
 import 'package:FinDit/controllers/home_controller.dart';
 import 'package:FinDit/screens/home/home_screen.dart';
 import 'package:FinDit/screens/search/search_screen.dart';
+import 'package:FinDit/screens/video_detail/video_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:FinDit/screens/app.dart';
@@ -24,8 +25,12 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: "/", page: () => App()),
         GetPage(
-          name: "/home",
-          page: () => HomeScreen(),
+          name: "/detail/:videoId",
+          page: () => VideoDetailScreen(),
+          // binding: BindingsBuilder(
+          //   () => Get.lazyPut<YoutubeDetailController>(
+          //       () => YoutubeDetailController()),
+          // ),
         ),
         GetPage(
           name: "/search",

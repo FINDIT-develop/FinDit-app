@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:FinDit/constants/constants.dart';
-import 'package:FinDit/models/Product.dart';
+import 'package:FinDit/models/product.dart';
 
 import 'add_to_cart.dart';
 import 'product_image.dart';
@@ -35,10 +35,7 @@ class Body extends StatelessWidget {
                       // height: 500,
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(24),
-                          topRight: Radius.circular(24),
-                        ),
+                      
                       ),
                       child: Column(
                         children: <Widget>[
@@ -56,7 +53,7 @@ class Body extends StatelessWidget {
             alignment: Alignment.bottomCenter,
             child: Padding(
               padding: const EdgeInsets.all(20.0),
-              child: AddToCart(product: product),
+              child: PurchaseBar(product: product),
             ))
       ],
     );

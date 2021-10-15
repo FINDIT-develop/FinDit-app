@@ -1,5 +1,6 @@
-import 'package:FinDit/models/Product.dart';
+import 'package:FinDit/models/product.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants/constants.dart';
 
@@ -19,9 +20,31 @@ class ItemCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          // Container(
+          //   width: 70,
+          //   margin: const EdgeInsets.only(left: 5, bottom: 10),
+          //   padding: const EdgeInsets.all(6.0),
+          //   child: Row(
+          //     children: [
+          //       GestureDetector(
+          //         child: Icon(
+          //           Icons.play_arrow,
+          //           size: 15,
+          //         ),
+          //       ),
+          //       Text(
+          //         "01:31",
+          //         style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+          //       ),
+          //     ],
+          //   ),
+          //   decoration: BoxDecoration(
+          //     border: Border.all(width: 0.75, color: kTextLightColor),
+          //     borderRadius: BorderRadius.circular(5),
+          //   ),
+          // ),
           Expanded(
             child: Container(
-              margin: EdgeInsets.only(top: 20),
               padding: EdgeInsets.all(kDefaultPadding),
               // For  demo we use fixed height  and width
               // Now we dont need them
@@ -34,18 +57,36 @@ class ItemCard extends StatelessWidget {
               child: Hero(tag: "${product.id}", child: Container()),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: kDefaultPadding / 4),
-            child: Text(
-              // products is out demo list
-              product.title,
-              style: TextStyle(color: kTextLightColor, fontSize: 15),
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: kDefaultPadding / 4),
+                    child: Text(
+                      // products is out demo list
+                      product.title,
+                      style: TextStyle(color: kTextLightColor, fontSize: 15),
+                    ),
+                  ),
+                  Text(
+                    "${product.price}원",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: SvgPicture.asset("assets/icons/like_active.svg"),
+                ),
+              )
+            ],
           ),
-          Text(
-            "${product.price}원",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          )
+          SizedBox(height: 20),
         ],
       ),
     );

@@ -1,5 +1,3 @@
-import 'package:FinDit/constants/size_config.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../../constants/constants.dart';
@@ -42,18 +40,18 @@ class _LikeCategoryState extends State<LikeCategory> {
             LikeCategory[index],
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 17,
+              fontSize: 15,
               color: selectedIndex == index ? kTextColor : kTextLightColor,
             ),
           ),
           Center(
             child: Container(
-              margin: EdgeInsets.only(top: kDefaultPadding / 4), //top padding 5
-              height: 2,
+              margin: EdgeInsets.only(top: kDefaultPadding / 2), //top padding 5
+              height: selectedIndex == index ? 2 : 1,
               width: 190,
-              color: selectedIndex == index ? Colors.black : Colors.transparent,
+              color: selectedIndex == index ? Colors.black : Colors.grey[200],
             ),
-          )
+          ),
         ],
       ),
     );

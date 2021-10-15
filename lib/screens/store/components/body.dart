@@ -1,4 +1,4 @@
-import 'package:FinDit/models/Product.dart';
+import 'package:FinDit/models/product.dart';
 import 'package:flutter/material.dart';
 import 'package:FinDit/constants/constants.dart';
 import 'package:FinDit/screens/details/details_screen.dart';

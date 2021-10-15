@@ -40,6 +40,7 @@ class App extends GetView<AppController> {
         body: Obx(() => _view[controller.currentIndex.value]),
         bottomNavigationBar: Obx(
           () => BottomNavigationBar(
+          
             type: BottomNavigationBarType.fixed,
             currentIndex: controller.currentIndex.value,
             onTap: controller.changePageIndex,

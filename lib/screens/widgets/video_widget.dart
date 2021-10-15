@@ -1,6 +1,6 @@
 import 'package:FinDit/constants/size_config.dart';
 import 'package:FinDit/controllers/video_cotroller.dart';
-import 'package:FinDit/models/Video.dart';
+import 'package:FinDit/models/video.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,11 +15,11 @@ class VideoWidget extends StatefulWidget {
 }
 
 class _VideoWidgetState extends State<VideoWidget> {
-  //late VideoController _videoController;
+  VideoController? _videoController;
   @override
   void initState() {
-    // _videoController = Get.put(VideoController(video: widget.video),
-    //     tag: widget.video.id.videoId);
+    _videoController = Get.put(VideoController(video: widget.video),
+        tag: widget.video.id.videoId);
     super.initState();
   }
 
@@ -32,7 +32,7 @@ class _VideoWidgetState extends State<VideoWidget> {
           child: CachedNetworkImage(
               imageUrl: widget.video.snippet.thumbnails.medium.url,
               placeholder: (context, url) => Container(
-                    height: 210,
+                    height: 230,
                     child: Center(
                       child: CircularProgressIndicator(),
                     ),
@@ -60,28 +60,19 @@ class _VideoWidgetState extends State<VideoWidget> {
       child: Row(
         children: [
           CircleAvatar(
-              radius: 20,
-              backgroundColor: Colors.grey.withOpacity(0.5),
-              backgroundImage: Image.network(
-                      "http://www.kint.kr/design/kint/img/main/cr_ytb_02.png")
-                  .image
-              //Image.network(_videoController.youtuberThumbnailUrl).image,
-              ),
+            radius: 20,
+            backgroundColor: Colors.grey.withOpacity(0.5),
+            backgroundImage:
+                Image.network(_videoController!.youtuberThumbnailUrl).image,
+          ),
           SizedBox(width: 15),
           Expanded(
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        widget.video.snippet.title,
-                        maxLines: 2,
-                        style: TextStyle(fontSize: 13),
-                      ),
-                    ),
-                  ],
+                Text(
+                  widget.video.snippet.title,
+                  maxLines: 2,
+                  style: TextStyle(fontSize: 13),
                 ),
                 Row(
                   children: [
@@ -92,15 +83,15 @@ class _VideoWidgetState extends State<VideoWidget> {
                         color: Colors.black.withOpacity(0.8),
                       ),
                     ),
-                    Text(" · "),
-                    Text(
-                      "조회수 1000회",
-                      //_videoController.viewCountString,
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.black.withOpacity(0.6),
-                      ),
-                    ),
+                    // Obx(
+                    //   () => Text(
+                    //     _videoController!.viewCountString,
+                    //     style: TextStyle(
+                    //       fontSize: 12,
+                    //       color: Colors.black.withOpacity(0.6),
+                    //     ),
+                    //   ),
+                    // ),
                     Text(" · "),
                     Text(
                       DateFormat("yyyy-MM-dd")

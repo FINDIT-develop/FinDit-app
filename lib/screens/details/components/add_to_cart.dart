@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:FinDit/models/Product.dart';
+import 'package:FinDit/models/product.dart';
 
 import 'package:FinDit/constants/constants.dart';
 
-class AddToCart extends StatelessWidget {
-  const AddToCart({
+class PurchaseBar extends StatelessWidget {
+  const PurchaseBar({
     Key? key,
     required this.product,
   }) : super(key: key);
