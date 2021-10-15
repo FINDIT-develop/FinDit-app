@@ -1,4 +1,4 @@
-import 'package:FinDit/models/Video.dart';
+import 'package:FinDit/models/video.dart';
 
 class YoutubeVideoResult {
   int? totalResults;

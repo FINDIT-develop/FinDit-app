@@ -2,6 +2,7 @@ import 'package:FinDit/constants/constants.dart';
 import 'package:FinDit/controllers/home_controller.dart';
 import 'package:FinDit/screens/home/components/banner.dart';
 import 'package:FinDit/screens/home/components/categories.dart';
+import 'package:FinDit/screens/video_detail/video_detail_screen.dart';
 import 'package:FinDit/screens/widgets/appbar.dart';
 import 'package:FinDit/screens/widgets/video_widget.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,8 @@ class HomeScreen extends StatelessWidget {
                   (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        // Get.toNamed("/detail/239587");
+                        Get.to(() => VideoDetailScreen());
+                        // Get.toNamed("/detail/${controller.youtubeResult.value.items[index].id.videoId}");
                       },
                       child: VideoWidget(
                           video: controller.youtubeResult.value.items[index]),

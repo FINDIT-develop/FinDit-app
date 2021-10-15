@@ -1,4 +1,4 @@
-import 'package:FinDit/models/youtube_video_result.dart';
+import 'package:FinDit/models/search_video_result.dart';
 import 'package:FinDit/repository/youtube_repository.dart';
 import 'package:get/get.dart';
 
