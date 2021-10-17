@@ -3,7 +3,7 @@ import 'package:FinDit/controllers/home_controller.dart';
 import 'package:FinDit/controllers/video_detail_controller.dart';
 import 'package:FinDit/models/product.dart';
 import 'package:FinDit/models/video.dart';
-import 'package:FinDit/screens/details/details_screen.dart';
+import 'package:FinDit/screens/product_detail/product_detail_screen.dart';
 import 'package:FinDit/screens/store/components/item_card.dart';
 import 'package:FinDit/screens/widgets/video_player.dart';
 import 'package:FinDit/screens/widgets/video_widget.dart';
@@ -62,7 +62,7 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
               press: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DetailsScreen(
+                    builder: (context) => ProductDetailScreen(
                       product: products[index],
                     ),
                   )),

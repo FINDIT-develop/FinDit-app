@@ -15,7 +15,7 @@ class PurchaseBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
+      padding: const EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 30),
       child: Row(
         children: <Widget>[
           IconButton(

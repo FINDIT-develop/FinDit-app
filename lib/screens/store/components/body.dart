@@ -1,7 +1,8 @@
 import 'package:FinDit/models/product.dart';
+import 'package:FinDit/screens/product_detail/product_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:FinDit/constants/constants.dart';
-import 'package:FinDit/screens/details/details_screen.dart';
+
 
 import 'categorries.dart';
 import 'item_card.dart';
@@ -31,7 +32,7 @@ class Body extends StatelessWidget {
                       press: () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DetailsScreen(
+                            builder: (context) => ProductDetailScreen(
                               product: products[index],
                             ),
                           )),

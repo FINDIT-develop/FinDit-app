@@ -24,34 +24,21 @@ class _VideoWidgetState extends State<VideoWidget> {
   }
 
   Widget _thumbnail() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Container(
-          clipBehavior: Clip.antiAliasWithSaveLayer,
-          child: CachedNetworkImage(
-              imageUrl: widget.video.snippet.thumbnails.medium.url,
-              placeholder: (context, url) => Container(
-                    height: 230,
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Container(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        child: CachedNetworkImage(
+            imageUrl: widget.video.snippet.thumbnails.medium.url,
+            placeholder: (context, url) => Container(
+                  height: 230,
+                  child: Center(
+                    child: CircularProgressIndicator(),
                   ),
-              fit: BoxFit.fitWidth),
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-        ),
-        // Container(
-        //   height: 210,
-        //   color: Colors.grey.withOpacity(0.5),
-        //   clipBehavior: Clip.antiAliasWithSaveLayer,
-        //   child: Image.network(
-        //     widget.video.snippet.thumbnails.medium.url,
-        //     fit: BoxFit.fitWidth,
-        //   ),
-        //    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
-        // ),
-      ],
-    );
+                ),
+            fit: BoxFit.fitWidth),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
+      ),
+    ]);
   }
 
   Widget _simpleDetailinfo() {

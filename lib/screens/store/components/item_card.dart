@@ -48,13 +48,15 @@ class ItemCard extends StatelessWidget {
               padding: EdgeInsets.all(kDefaultPadding),
               // For  demo we use fixed height  and width
               // Now we dont need them
-              // height: 180,
-              // width: 160,
+              height: 180,
+              width: 160,
+
               decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.circular(16),
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(15),
               ),
-              child: Hero(tag: "${product.id}", child: Container()),
+              child:
+                  Hero(tag: "${product.id}", child: Image.asset(product.image)),
             ),
           ),
           Row(
