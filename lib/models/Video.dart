@@ -1,15 +1,15 @@
 class Video {
   Video({
-    required this.kind,
-    required this.etag,
-    required this.id,
-    required this.snippet,
+    this.kind,
+    this.etag,
+    this.id,
+    this.snippet,
   });
 
-  String kind;
-  String etag;
-  Id id;
-  Snippet snippet;
+  String? kind;
+  String? etag;
+  Id? id;
+  Snippet? snippet;
 
   factory Video.fromJson(Map<String, dynamic> json) => Video(
         kind: json["kind"],
@@ -21,19 +21,19 @@ class Video {
   Map<String, dynamic> toJson() => {
         "kind": kind,
         "etag": etag,
-        "id": id.toJson(),
-        "snippet": snippet.toJson(),
+        "id": id!.toJson(),
+        "snippet": snippet!.toJson(),
       };
 }
 
 class Id {
   Id({
-    required this.kind,
-    required this.videoId,
+    this.kind,
+    this.videoId,
   });
 
-  String kind;
-  String videoId;
+  String? kind;
+  String? videoId;
 
   factory Id.fromJson(Map<String, dynamic> json) => Id(
         kind: json["kind"],

@@ -19,7 +19,7 @@ class _VideoWidgetState extends State<VideoWidget> {
   @override
   void initState() {
     _videoController = Get.put(VideoController(video: widget.video),
-        tag: widget.video.id.videoId);
+        tag: widget.video.id!.videoId);
     super.initState();
   }
 
@@ -28,7 +28,7 @@ class _VideoWidgetState extends State<VideoWidget> {
       Container(
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: CachedNetworkImage(
-            imageUrl: widget.video.snippet.thumbnails.medium.url,
+            imageUrl: widget.video.snippet!.thumbnails.medium.url,
             placeholder: (context, url) => Container(
                   height: 230,
                   child: Center(
@@ -57,14 +57,14 @@ class _VideoWidgetState extends State<VideoWidget> {
             child: Column(
               children: [
                 Text(
-                  widget.video.snippet.title,
+                  widget.video.snippet!.title,
                   maxLines: 2,
                   style: TextStyle(fontSize: 13),
                 ),
                 Row(
                   children: [
                     Text(
-                      widget.video.snippet.channelTitle,
+                      widget.video.snippet!.channelTitle,
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.black.withOpacity(0.8),
@@ -82,7 +82,7 @@ class _VideoWidgetState extends State<VideoWidget> {
                     Text(" · "),
                     Text(
                       DateFormat("yyyy-MM-dd")
-                          .format(widget.video.snippet.publishTime),
+                          .format(widget.video.snippet!.publishTime),
                       style: TextStyle(
                         fontSize: 12,
                         color: Colors.black.withOpacity(0.6),

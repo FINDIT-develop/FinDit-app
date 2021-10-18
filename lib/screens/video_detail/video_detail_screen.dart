@@ -1,54 +1,68 @@
 import 'package:FinDit/constants/constants.dart';
 import 'package:FinDit/controllers/home_controller.dart';
+import 'package:FinDit/controllers/video_cotroller.dart';
 import 'package:FinDit/controllers/video_detail_controller.dart';
 import 'package:FinDit/models/product.dart';
 import 'package:FinDit/models/video.dart';
 import 'package:FinDit/screens/product_detail/product_detail_screen.dart';
 import 'package:FinDit/screens/store/components/item_card.dart';
-import 'package:FinDit/screens/widgets/video_player.dart';
 import 'package:FinDit/screens/widgets/video_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import 'components/video_player.dart';
+
 class VideoDetailScreen extends GetView<YoutubeDetailController> {
   VideoDetailScreen({Key? key}) : super(key: key);
+  final HomeController homecontroller = Get.put(HomeController());
 
   Widget _titleZone() {
     return SliverToBoxAdapter(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-        child: Row(
-          children: [
-            CircleAvatar(
-              radius: 25,
-              backgroundColor: Colors.grey[400],
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "eng. 2년 만에 찾아온 나 혼자만의 시간... 나홀로 즐기는 장미빛 하루 VLOG",
-                    style: TextStyle(height: 1.2),
-                    maxLines: 2,
-                  ),
-                ],
+        child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  controller.video.value.snippet!.title,
+                  style: TextStyle(height: 1.2),
+                  maxLines: 2,
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              child: InkWell(
-                  onTap: () {},
-                  child: SvgPicture.asset("assets/icons/like_active.svg")),
-            )
-          ],
-        ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                child: InkWell(
+                    onTap: () {},
+                    child: SvgPicture.asset("assets/icons/like_active.svg")),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              CircleAvatar(
+                radius: 15,
+                backgroundColor: Colors.grey.withOpacity(0.5),
+                backgroundImage: Image.network(
+                        controller.videoController!.youtuberThumbnailUrl)
+                    .image,
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                  child: Text(controller.video.value.snippet!.channelTitle))
+            ],
+          ),
+        ],
       ),
-    );
+    ));
   }
 
   Widget _inthisvideo() {
@@ -81,20 +95,19 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
   }
 
   Widget _recommendvideo() {
-    return SliverPadding(
-      padding: const EdgeInsets.only(bottom: 30),
-      sliver: SliverFixedExtentList(
-        itemExtent: 210.0,
-        delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-          return Padding(
-            padding: const EdgeInsets.all(15),
-            child: Container(
-              alignment: Alignment.center,
-              color: Colors.grey[200],
-              height: 210,
-            ),
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (context, index) {
+          return GestureDetector(
+            onTap: () {
+              Get.toNamed(
+                  "/detail/${homecontroller.youtubeResult.value.items[index].id!.videoId}");
+            },
+            child: VideoWidget(
+                video: homecontroller.youtubeResult.value.items[index]),
           );
-        }, childCount: 5),
+        },
+        childCount: homecontroller.youtubeResult.value.items.length,
       ),
     );
   }
@@ -121,7 +134,7 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
             ),
             SliverAppBar(
               automaticallyImplyLeading: false,
-              title: VideoPlayer(),
+              title: VideoPlayer(controller: controller.playController),
               floating: false,
               snap: false,
               pinned: true,

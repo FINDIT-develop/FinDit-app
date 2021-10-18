@@ -16,7 +16,6 @@ class ProductDetailScreen extends StatelessWidget {
   ProductDetailScreen({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
@@ -29,9 +28,9 @@ class ProductDetailScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   )),
               floating: true,
-              snap: true,
+              snap: false,
               titleSpacing: 0,
-              backgroundColor: Colors.transparent,
+              // backgroundColor: Colors.transparent,
             ),
             SliverToBoxAdapter(
               child: ProductImage(product: product),

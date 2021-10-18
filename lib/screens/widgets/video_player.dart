@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoPlayer extends StatefulWidget {
-  const VideoPlayer({Key? key}) : super(key: key);
+  const VideoPlayer(YoutubePlayerController playController, {Key? key}) : super(key: key);
 
   @override
   _VideoPlayerState createState() => _VideoPlayerState();
