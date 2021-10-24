@@ -26,7 +26,7 @@ class YoutubeDetailController extends GetxController {
     playController = YoutubePlayerController(
       initialVideoId: video.value.id!.videoId!,
       flags: const YoutubePlayerFlags(
-        autoPlay: false,
+        autoPlay: true,
         enableCaption: true,
       ),
     );

@@ -16,7 +16,7 @@ class ProductImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: 300.0,
+        height: 350.0,
         viewportFraction: 1,
       ),
       items: [1, 2, 3].map((i) {
@@ -26,7 +26,7 @@ class ProductImage extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(color: Colors.grey[200]),
                 child: Image.asset(
-                  "assets/images/dummy2.jpeg",
+                  "assets/images/dummy4.png",
                   fit: BoxFit.fitWidth,
                 ));
           },

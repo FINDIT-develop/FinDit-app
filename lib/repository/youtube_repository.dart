@@ -15,7 +15,7 @@ class YoutubeRepository extends GetConnect {
 
   Future<YoutubeVideoResult?> loadVideos() async {
     String url =
-        "/search?part=snippet&q=브이로그&maxResults=10&order=date&type=video&videoDefinition=high&key=AIzaSyBTXPa0hTPLds9U1oCGBLaDs2jZ9_QLDWw";
+        "/search?part=snippet&q=데일리룩북&maxResults=10&order=date&type=video&videoDefinition=high&key=AIzaSyBTXPa0hTPLds9U1oCGBLaDs2jZ9_QLDWw";
     final response = await get(url);
     if (response.status.hasError) {
       return Future.error(response.status);

@@ -45,44 +45,50 @@ class ItemCard extends StatelessWidget {
           // ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(kDefaultPadding),
+              //padding: EdgeInsets.all(kDefaultPadding),
               // For  demo we use fixed height  and width
               // Now we dont need them
+              clipBehavior: Clip.antiAliasWithSaveLayer,
               height: 180,
               width: 160,
 
               decoration: BoxDecoration(
                 color: Colors.grey[100],
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(10),
               ),
-              child:
-                  Hero(tag: "${product.id}", child: Image.asset(product.image)),
+              child: Hero(
+                  tag: "${product.id}",
+                  child: Image.asset(product.image, fit: BoxFit.cover)),
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: kDefaultPadding / 4),
-                    child: Text(
-                      // products is out demo list
-                      product.title,
-                      style: TextStyle(color: kTextLightColor, fontSize: 15),
+              Container(
+                width: 120,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: kDefaultPadding / 4),
+                      child: Text(
+                        // products is out demo list
+                        product.title,
+                        style: TextStyle(color: kTextLightColor, fontSize: 14),
+                      ),
                     ),
-                  ),
-                  Text(
-                    "${product.price}원",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ],
+                    Text(
+                      "${product.price}원",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
               GestureDetector(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: SvgPicture.asset("assets/icons/like_active.svg"),
                 ),
               )

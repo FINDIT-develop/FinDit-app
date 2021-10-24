@@ -101,7 +101,7 @@ class ProductDetailScreen extends StatelessWidget {
   Widget _videoreview() {
     return SliverToBoxAdapter(
       child: Container(
-        height: 300.0,
+        height: 280.0,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: controller.youtubeResult.value.items.length,

@@ -20,12 +20,14 @@ class ProductIntro extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
-              "hellocock",
-              style: TextStyle(color: Colors.black),
+              "de ondo",
+              style: TextStyle(
+                color: Colors.grey[600],
+              ),
             ),
             SizedBox(height: 10),
             Text(
-              "헬로콕 논알콜 칵테일 DIY 키트",
+              "드 온도 화이트 핀턱팬츠",
               style: TextStyle(
                   fontSize: 20,
                   color: Colors.black,

@@ -18,13 +18,12 @@ AppBar buildAppBar() {
     ),
     actions: <Widget>[
       IconButton(
-        icon: SvgPicture.asset(
-          "assets/icons/search.svg",
-          // By default our  icon color is white
-          color: kActiveColor,
-        ),
-        onPressed: () => Get.to(() => SearchScreen()),
-      ),
+          icon: SvgPicture.asset(
+            "assets/icons/search.svg",
+            // By default our  icon color is white
+            color: kActiveColor,
+          ),
+          onPressed: () => Get.toNamed("/search")),
       SizedBox(width: kDefaultPadding / 2)
     ],
   );
