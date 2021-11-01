@@ -42,14 +42,14 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SliverAppBar(
-                title: Categories(),
-                floating: false,
-                snap: false,
-                pinned: true,
-                toolbarHeight: 50,
-                titleSpacing: 0,
-              ),
+              // SliverAppBar(
+              //   title: Categories(),
+              //   floating: false,
+              //   snap: false,
+              //   pinned: true,
+              //   toolbarHeight: 50,
+              //   titleSpacing: 0,
+              // ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {

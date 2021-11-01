@@ -1,5 +1,6 @@
 import 'package:FinDit/constants/constants.dart';
 import 'package:FinDit/controllers/home_controller.dart';
+import 'package:FinDit/controllers/product_controller.dart';
 import 'package:FinDit/models/product.dart';
 import 'package:FinDit/screens/store/components/item_card.dart';
 import 'package:FinDit/screens/video_detail/video_detail_screen.dart';
@@ -13,6 +14,7 @@ import 'components/product_intro.dart';
 class ProductDetailScreen extends StatelessWidget {
   final Product product;
   final HomeController controller = Get.put(HomeController());
+  final ProductController productController = Get.put(ProductController());
   ProductDetailScreen({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -130,17 +132,17 @@ class ProductDetailScreen extends StatelessWidget {
         height: 300.0,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: products.length,
+          itemCount: productController.productList.value.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.all(10.0),
               child: ItemCard(
-                product: products[index],
+                product: productController.productList.value[index],
                 press: () => Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => ProductDetailScreen(
-                        product: products[index],
+                        product: productController.productList.value[index],
                       ),
                     )),
               ),

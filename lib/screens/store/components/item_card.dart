@@ -7,6 +7,7 @@ import '../../../constants/constants.dart';
 class ItemCard extends StatelessWidget {
   final Product product;
   final VoidCallback press;
+
   const ItemCard({
     Key? key,
     required this.product,
@@ -57,8 +58,8 @@ class ItemCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Hero(
-                  tag: "${product.id}",
-                  child: Image.asset(product.image, fit: BoxFit.cover)),
+                  tag: "${product.id!}",
+                  child: Image.asset(product.imageLink!, fit: BoxFit.cover)),
             ),
           ),
           Row(
@@ -75,12 +76,12 @@ class ItemCard extends StatelessWidget {
                           vertical: kDefaultPadding / 4),
                       child: Text(
                         // products is out demo list
-                        product.title,
+                        product.name!,
                         style: TextStyle(color: kTextLightColor, fontSize: 14),
                       ),
                     ),
                     Text(
-                      "${product.price}원",
+                      "${product.price!}원",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],

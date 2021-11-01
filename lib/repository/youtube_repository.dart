@@ -1,6 +1,5 @@
 import 'package:FinDit/models/statistics.dart';
 import 'package:FinDit/models/search_video_result.dart';
-import 'package:FinDit/models/search_video_result.dart';
 import 'package:FinDit/models/youtuber.dart';
 import 'package:get/get.dart';
 
@@ -13,9 +12,9 @@ class YoutubeRepository extends GetConnect {
     super.onInit();
   }
 
-  Future<YoutubeVideoResult?> loadVideos() async {
+  Future<YoutubeVideoResult?> loadVideos(String loadKeyword) async {
     String url =
-        "/search?part=snippet&q=데일리룩북&maxResults=10&order=date&type=video&videoDefinition=high&key=AIzaSyBTXPa0hTPLds9U1oCGBLaDs2jZ9_QLDWw";
+        "/search?part=snippet&q=$loadKeyword&maxResults=10&order=date&type=video&videoDefinition=high&key=AIzaSyBTXPa0hTPLds9U1oCGBLaDs2jZ9_QLDWw";
     final response = await get(url);
     if (response.status.hasError) {
       return Future.error(response.status);

@@ -1,5 +1,6 @@
 import 'package:FinDit/constants/constants.dart';
 import 'package:FinDit/controllers/home_controller.dart';
+import 'package:FinDit/controllers/product_controller.dart';
 import 'package:FinDit/controllers/video_cotroller.dart';
 import 'package:FinDit/controllers/video_detail_controller.dart';
 import 'package:FinDit/models/product.dart';
@@ -16,7 +17,7 @@ import 'components/video_player.dart';
 class VideoDetailScreen extends GetView<YoutubeDetailController> {
   VideoDetailScreen({Key? key}) : super(key: key);
   final HomeController homecontroller = Get.put(HomeController());
-
+  final ProductController productController = Get.put(ProductController());
   Widget _titleZone() {
     return SliverToBoxAdapter(
         child: Padding(
@@ -72,17 +73,17 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
         delegate: SliverChildBuilderDelegate(
           (BuildContext context, int index) {
             return ItemCard(
-              product: products[index],
+              product: productController.productList.value[index],
               press: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ProductDetailScreen(
-                      product: products[index],
+                      product: productController.productList.value[index],
                     ),
                   )),
             );
           },
-          childCount: products.length,
+          childCount: productController.productList.value.length,
         ),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

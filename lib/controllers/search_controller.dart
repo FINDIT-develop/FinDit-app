@@ -45,7 +45,6 @@ class SearchController extends GetxController {
         .search(searchKey, youtubeVideoResult.value.nextPagetoken ?? "");
 
     if (youtubeVideoResultFromServer != null &&
-        youtubeVideoResultFromServer.items != null &&
         youtubeVideoResultFromServer.items.length > 0) {
       youtubeVideoResult.update((youtube) {
         youtube!.nextPagetoken = youtubeVideoResultFromServer.nextPagetoken;

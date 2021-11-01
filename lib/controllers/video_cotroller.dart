@@ -7,7 +7,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 
 class VideoController extends GetxController {
   Video? video;
-  VideoController({ this.video});
+  VideoController({this.video});
   Rx<Statistics> statistics = Statistics().obs;
   Rx<Youtuber> youtuber = Youtuber().obs;
 

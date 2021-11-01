@@ -41,6 +41,7 @@ class _CategoriesState extends State<Categories> {
             SizedBox(
               height: 5,
             ),
+            
             Container(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
               child: Text(
