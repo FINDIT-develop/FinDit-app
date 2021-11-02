@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'components/categorries.dart';
 import 'components/item_card.dart';
 
-class StoreScreen extends GetView<ProductController> {
+class StoreScreen extends StatelessWidget {
   final controller = Get.isRegistered<ProductController>()
       ? Get.find<ProductController>()
       : Get.put(ProductController());
@@ -26,26 +26,26 @@ class StoreScreen extends GetView<ProductController> {
         children: <Widget>[
           Categories(),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(
-                kDefaultPadding,
-              ),
-              child: GridView.builder(
-                  itemCount: controller.productList.value.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: kDefaultPadding,
-                    crossAxisSpacing: kDefaultPadding,
-                    childAspectRatio: 0.6,
+            child: Obx(() => Padding(
+                  padding: const EdgeInsets.all(
+                    kDefaultPadding,
                   ),
-                  itemBuilder: (context, index) => ItemCard(
-                      product: controller.productList.value[index],
-                      press: () => Get.to(
-                            () => ProductDetailScreen(
-                              product: controller.productList.value[index],
-                            ),
-                          ))),
-            ),
+                  child: GridView.builder(
+                      itemCount: controller.productList.value.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: kDefaultPadding,
+                        crossAxisSpacing: kDefaultPadding,
+                        childAspectRatio: 0.6,
+                      ),
+                      itemBuilder: (context, index) => ItemCard(
+                          product: controller.productList.value[index],
+                          press: () => Get.to(
+                                () => ProductDetailScreen(
+                                  product: controller.productList.value[index],
+                                ),
+                              ))),
+                )),
           ),
         ],
       ),

@@ -1,3 +1,4 @@
+import 'package:FinDit/controllers/test_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:FinDit/constants/constants.dart';
 
@@ -9,6 +10,8 @@ class SignInForm extends StatefulWidget {
 }
 
 class _SignInFormState extends State<SignInForm> {
+  final controller = TestController();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -60,7 +63,9 @@ class _SignInFormState extends State<SignInForm> {
             color: kPrimaryColor,
             elevation: 3.0,
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                controller.postData();
+              },
               child: Center(
                 child: Text(
                   '로그인',

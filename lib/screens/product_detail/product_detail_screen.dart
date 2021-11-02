@@ -110,8 +110,8 @@ class ProductDetailScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
-                Get.to(() => VideoDetailScreen());
-                // Get.toNamed("/detail/${controller.youtubeResult.value.items[index].id.videoId}");
+                Get.toNamed(
+                    "/detail/${controller.youtubeResult.value.items[index].id!.videoId}");
               },
               child: Container(
                 width: 350,
@@ -159,8 +159,8 @@ class ProductDetailScreen extends StatelessWidget {
         (context, index) {
           return GestureDetector(
             onTap: () {
-              Get.to(() => VideoDetailScreen());
-              // Get.toNamed("/detail/${controller.youtubeResult.value.items[index].id.videoId}");
+              Get.toNamed(
+                  "/detail/${controller.youtubeResult.value.items[index].id!.videoId}");
             },
             child:
                 VideoWidget(video: controller.youtubeResult.value.items[index]),
