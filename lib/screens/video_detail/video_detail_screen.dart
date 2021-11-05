@@ -11,13 +11,39 @@ import 'package:FinDit/screens/widgets/video_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
 import 'components/video_player.dart';
+
+import 'dart:io';
+import 'dart:ui' as ui;
+import 'dart:typed_data';
+
+import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
 
 class VideoDetailScreen extends GetView<YoutubeDetailController> {
   VideoDetailScreen({Key? key}) : super(key: key);
   final HomeController homecontroller = Get.put(HomeController());
   final ProductController productController = Get.put(ProductController());
+  var globalKey = new GlobalKey();
+
+  void _capture() async {
+    print("START CAPTURE");
+    var renderObject = globalKey.currentContext!.findRenderObject();
+    if (renderObject is RenderRepaintBoundary) {
+      var boundary = renderObject;
+      ui.Image image = await boundary.toImage();
+      final directory = (await getApplicationDocumentsDirectory()).path;
+      ByteData? byteData =
+          await image.toByteData(format: ui.ImageByteFormat.png);
+      Uint8List pngBytes = byteData!.buffer.asUint8List();
+      print(pngBytes);
+      File imgFile = new File('$directory/screenshot.png');
+      imgFile.writeAsBytes(pngBytes);
+      print("FINISH CAPTURE ${imgFile.path}");
+    }
+  }
+
   Widget _titleZone() {
     return SliverToBoxAdapter(
         child: Padding(
@@ -135,7 +161,9 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
             ),
             SliverAppBar(
               automaticallyImplyLeading: false,
-              title: VideoPlayer(controller: controller.playController),
+              title: RepaintBoundary(
+                  key: globalKey,
+                  child: VideoPlayer(controller: controller.playController)),
               floating: false,
               snap: false,
               pinned: true,
@@ -161,6 +189,20 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
               ),
             ),
             _inthisvideo(),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 20, bottom: 20),
+                child: TextButton(
+                  onPressed: _capture,
+                  child: Text("영상 속 정보",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      )),
+                ),
+              ),
+            ),
             SliverToBoxAdapter(
               child: Divider(
                 thickness: 0.75,

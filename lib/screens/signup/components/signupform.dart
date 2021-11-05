@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:FinDit/controllers/user_controller.dart';
+import 'package:FinDit/screens/widgets/dialog_helper.dart';
+
 import 'package:flutter/material.dart';
 import 'package:FinDit/constants/constants.dart';
+import 'package:http/http.dart' as http;
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -207,12 +212,25 @@ class _SignUpFormState extends State<SignUpForm> {
                   onTap: () async {
                     if (_formKey.currentState!.validate()) {
                       var request = {
-                        'email': _email.text,
-                        'password': _password.text,
-                        'name': _name.text,
+                        "email": _email.text,
+                        "password": _password.text,
+                        "name": _name.text,
                       };
+                      String url = "http://moic-findit.site:3000/app/users";
+                      var body = json.encode(request);
+                      http.Response response = await http.post(Uri.parse(url),
+                          headers: {"Content-Type": "application/json"},
+                          body: body);
 
-                      userController.signup(request);
+                      final responseData = json.decode(response.body);
+
+                      if (response.statusCode == 200) {
+                        // If the call to the server was successful, parse the JSON
+                        print(responseData);
+                      } else {
+                        // If that call was not successful, throw an error.
+                        throw Exception('Failed to load post');
+                      }
                     }
                   },
                   child: Center(
@@ -231,5 +249,22 @@ class _SignUpFormState extends State<SignUpForm> {
             SizedBox(height: 20.0),
           ],
         ));
+  }
+
+  Future<dynamic> signup(Map<String, dynamic> request) async {
+    String url = "http://moic-findit.site:3000/app/users";
+    var body = json.encode(request);
+    http.Response response = await http.post(Uri.parse(url),
+        headers: {"Content-Type": "application/json"}, body: body);
+
+    final responseData = json.decode(response.body);
+
+    if (response.statusCode == 200) {
+      // If the call to the server was successful, parse the JSON
+      return print(responseData);
+    } else {
+      // If that call was not successful, throw an error.
+      throw Exception('Failed to load post');
+    }
   }
 }

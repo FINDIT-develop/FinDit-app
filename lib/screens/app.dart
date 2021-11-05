@@ -20,17 +20,17 @@ class App extends GetView<AppController> {
         "title": "HOME"
       },
       {
-        "icon": "assets/icons/store.svg",
+        "icon": "assets/icons/shop.svg",
         "active_icon": "assets/icons/store_active.svg",
         "title": "STORE"
       },
       {
-        "icon": "assets/icons/like.svg",
-        "active_icon": "assets/icons/like_active.svg",
+        "icon": "assets/icons/like_icon.svg",
+        "active_icon": "assets/icons/like_icon.svg",
         "title": "LIKE"
       },
       {
-        "icon": "assets/icons/my.svg",
+        "icon": "assets/icons/user.svg",
         "active_icon": "assets/icons/home_active.svg",
         "title": "MY"
       },
@@ -40,25 +40,27 @@ class App extends GetView<AppController> {
         body: Obx(() => _view[controller.currentIndex.value]),
         bottomNavigationBar: Obx(
           () => BottomNavigationBar(
-          
             type: BottomNavigationBarType.fixed,
             currentIndex: controller.currentIndex.value,
             onTap: controller.changePageIndex,
             backgroundColor: Colors.white,
-            selectedFontSize: 0,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
+            selectedItemColor: kActiveColor,
+            selectedFontSize: 11,
+            unselectedFontSize: 11,
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
             items: List.generate(
               _navitems.length,
               (index) => BottomNavigationBarItem(
-                  icon: buildSvgIcon(
+                icon: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: buildSvgIcon(
                     src: _navitems[index]['icon'],
                   ),
-                  activeIcon: buildSvgIcon(
-                    src: _navitems[index]['active_icon'],
-                  ),
-                  tooltip: _navitems[index]["title"],
-                  label: ""),
+                ),
+                //tooltip: _navitems[index]["title"],
+                label: _navitems[index]["title"],
+              ),
             ),
           ),
         ));
@@ -67,8 +69,8 @@ class App extends GetView<AppController> {
   SvgPicture buildSvgIcon({required String src, bool isActive = false}) {
     return SvgPicture.asset(
       src,
-      width: 25,
-      height: 25,
+      width: 21,
+      height: 21,
       color: kActiveColor,
     );
   }

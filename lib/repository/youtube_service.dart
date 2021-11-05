@@ -3,8 +3,8 @@ import 'package:FinDit/models/search_video_result.dart';
 import 'package:FinDit/models/youtuber.dart';
 import 'package:get/get.dart';
 
-class YoutubeRepository extends GetConnect {
-  static YoutubeRepository get to => Get.find();
+class YoutubeService extends GetConnect {
+  static YoutubeService get to => Get.find();
 
   @override
   void onInit() {
@@ -12,7 +12,8 @@ class YoutubeRepository extends GetConnect {
     super.onInit();
   }
 
-  Future<YoutubeVideoResult?> loadVideos(String loadKeyword) async {
+  Future<YoutubeVideoResult?> loadVideos(
+      String loadKeyword, String nextPageToken) async {
     String url =
         "/search?part=snippet&q=$loadKeyword&maxResults=10&order=date&type=video&videoDefinition=high&key=AIzaSyBTXPa0hTPLds9U1oCGBLaDs2jZ9_QLDWw";
     final response = await get(url);

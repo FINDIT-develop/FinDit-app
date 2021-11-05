@@ -4,8 +4,7 @@ import 'package:get/get.dart';
 
 class DialogHelper {
   //show error dialog
-  static void showErroDialog(
-      {String title = 'Error', String? description = 'Something went wrong'}) {
+  static void showErroDialog({String title = 'Error', String? description}) {
     Get.dialog(CupertinoAlertDialog(
       title: Text(
         title,
@@ -14,10 +13,12 @@ class DialogHelper {
         description ?? '',
       ),
       actions: [
-        TextButton(
-          onPressed: () => Get.back(),
-          child: Text("OK"),
-        )
+        CupertinoDialogAction(
+          child: Text(
+            '확인',
+            style: TextStyle(fontSize: 13),
+          ),
+        ),
       ],
     ));
   }

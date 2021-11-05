@@ -1,5 +1,5 @@
 import 'package:FinDit/models/search_video_result.dart';
-import 'package:FinDit/repository/youtube_repository.dart';
+import 'package:FinDit/repository/youtube_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -40,8 +40,7 @@ class SearchController extends GetxController {
   }
 
   void _searchYoutube(String searchKey) async {
-    YoutubeVideoResult? youtubeVideoResultFromServer = await YoutubeRepository
-        .to
+    YoutubeVideoResult? youtubeVideoResultFromServer = await YoutubeService.to
         .search(searchKey, youtubeVideoResult.value.nextPagetoken ?? "");
 
     if (youtubeVideoResultFromServer != null &&

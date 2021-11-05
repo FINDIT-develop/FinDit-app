@@ -46,11 +46,13 @@ class _VideoWidgetState extends State<VideoWidget> {
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 20,
-            backgroundColor: Colors.grey.withOpacity(0.5),
-            backgroundImage:
-                Image.network(_videoController!.youtuberThumbnailUrl).image,
+          Obx(
+            () => CircleAvatar(
+              radius: 20,
+              backgroundColor: Colors.grey.withOpacity(0.5),
+              backgroundImage:
+                  Image.network(_videoController!.youtuberThumbnailUrl).image,
+            ),
           ),
           SizedBox(width: 15),
           Expanded(
