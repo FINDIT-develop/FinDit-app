@@ -1,4 +1,4 @@
-package com.example.FinDit
+package com.moic.findit
 
 import io.flutter.embedding.android.FlutterActivity
 

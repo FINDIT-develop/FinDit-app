@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "256976029262",
+    "project_id": "findit-af4d0",
+    "storage_bucket": "findit-af4d0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:256976029262:android:6d54b1709e91119455e51f",
+        "android_client_info": {
+          "package_name": "com.moic.findit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "256976029262-3re7flpffpl63di64o653p94a6dkdlnl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJYUqKppBsVvv5fXn_QLZqTWuZYQp-i_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "256976029262-3re7flpffpl63di64o653p94a6dkdlnl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "256976029262-qiovvfoor8t72ueld7f45ohfcjgsc6lh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.moic.findit"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
