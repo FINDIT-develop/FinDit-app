@@ -1,5 +1,7 @@
 import 'package:FinDit/constants/constants.dart';
 import 'package:FinDit/screens/app.dart';
+import 'package:FinDit/screens/mypage/components/no_profile.dart';
+import 'package:FinDit/screens/mypage/components/profile_pic.dart';
 import 'package:FinDit/screens/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +13,7 @@ class MyPageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool islogin = true;
     return Scaffold(
         // appBar: AppBar(
         //   title: Text(
@@ -25,7 +28,7 @@ class MyPageScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ProfilePic(),
+          islogin ? ProfilePic() : NoProfile(),
           Container(
             padding: const EdgeInsets.only(top: 10),
             height: 10,
@@ -48,12 +51,17 @@ class MyPageScreen extends StatelessWidget {
                   ),
                   Divider(),
                   ProfileMenu(
-                    text: "개인정보 수집 및 이용",
+                    text: "개인정보 수집 및 이용 약관",
                     press: () {},
                   ),
                   Divider(),
                   ProfileMenu(
                     text: "서비스 이용 약관",
+                    press: () {},
+                  ),
+                  Divider(),
+                  ProfileMenu(
+                    text: "버전정보 1.0.0",
                     press: () {},
                   ),
                   Divider(),
