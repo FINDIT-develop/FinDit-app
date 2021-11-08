@@ -7,10 +7,12 @@ import 'package:FinDit/models/product.dart';
 import 'package:FinDit/models/video.dart';
 import 'package:FinDit/screens/product_detail/product_detail_screen.dart';
 import 'package:FinDit/screens/store/components/item_card.dart';
+import 'package:FinDit/screens/webview.dart';
 import 'package:FinDit/screens/widgets/video_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'components/video_player.dart';
 
 import 'dart:io';
@@ -153,7 +155,11 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   )),
-              actions: [IconButton(onPressed: () {}, icon: Icon(Icons.link))],
+              actions: [
+                IconButton(
+                    onPressed: () => Get.to(WebViewExample()),
+                    icon: Icon(Icons.link))
+              ],
               floating: true,
               snap: false,
               toolbarHeight: 50,

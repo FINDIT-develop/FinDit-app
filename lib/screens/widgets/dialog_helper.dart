@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 class DialogHelper {
   //show error dialog
-  static void showErroDialog({String title = 'Error', String? description}) {
+  static void showErrDialog({String title = 'Error', String? description}) {
     Get.dialog(CupertinoAlertDialog(
       title: Text(
         title,
@@ -21,6 +21,10 @@ class DialogHelper {
         ),
       ],
     ));
+  }
+
+  static void showErrSnackbar({String title = 'Error', String? description}) {
+    Get.snackbar(title, description ?? '');
   }
 
   //show toast
