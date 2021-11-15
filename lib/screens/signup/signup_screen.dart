@@ -16,11 +16,10 @@ class SignUpScreen extends StatelessWidget {
             onPressed: () => Get.back(),
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(kDefaultPadding),
-          child: Column(children: [
-            SignUpForm(),
-          ]),
+        body: SingleChildScrollView(
+          child: Padding(
+              padding: const EdgeInsets.all(kDefaultPadding),
+              child: SignUpForm()),
         ));
   }
 }

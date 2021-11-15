@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:FinDit/controllers/user_controller.dart';
 import 'package:FinDit/screens/signin/signin_screen.dart';
 import 'package:FinDit/screens/widgets/dialog_helper.dart';
+import 'package:FinDit/screens/widgets/primary_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -30,7 +31,7 @@ class _SignUpFormState extends State<SignUpForm> {
   bool isChecked_privacy = false;
   bool isChecked_service = false;
   bool isChecked_marketing = false;
-  // _MyCustomFormState가 생성될 때 호출
+
   @override
   void initState() {
     super.initState();
@@ -60,10 +61,13 @@ class _SignUpFormState extends State<SignUpForm> {
                 if (value!.isEmpty) {
                   return '이메일을 입력해주세요.';
                 }
-
+                if (!value.isEmail) {
+                  return "이메일 형식이 아닙니다.";
+                }
                 return null;
               },
               cursorColor: kActiveColor,
+              style: TextStyle(fontFamily: 'Montserrat'),
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(10),
                 hintText: '이메일 입력',
@@ -92,6 +96,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 return null;
               },
               cursorColor: kActiveColor,
+              style: TextStyle(fontFamily: 'Montserrat'),
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(10),
                 hintText: "비밀번호 입력",
@@ -121,6 +126,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 return null;
               },
               cursorColor: kActiveColor,
+              style: TextStyle(fontFamily: 'Montserrat'),
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(10),
                 hintText: "비밀번호 확인",
@@ -148,6 +154,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 return null;
               },
               cursorColor: kActiveColor,
+              style: TextStyle(fontFamily: 'Montserrat'),
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(10),
                 hintText: '닉네임 입력',
@@ -248,65 +255,47 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
             ),
             SizedBox(height: 40.0),
-            Container(
-              height: 50.0,
-              child: Material(
-                borderRadius: BorderRadius.circular(10.0),
-                color: kPrimaryColor,
-                elevation: 3.0,
-                child: GestureDetector(
-                  onTap: () async {
-                    if (_formKey.currentState!.validate()) {
-                      if (isChecked_service == true &&
-                          isChecked_privacy == true) {
-                        await _register().then((var user) {
-                          user!.updateDisplayName(_name.text);
-                        });
-                        await Get.dialog(CupertinoAlertDialog(
-                          title: Text("회원가입 성공"),
-                          content: Text("회원가입을 축하드립니다!🥳"),
-                          actions: [
-                            CupertinoDialogAction(
-                              child: Text(
-                                "확인",
-                                style: TextStyle(fontSize: 13),
-                              ),
-                              onPressed: () => Get.offAll(() => SignInScreen()),
-                            )
-                          ],
-                        ));
-                      } else {
-                        DialogHelper.showErrSnackbar(
-                            title: "약관 미동의", description: "약관에 동의해주세요");
-                      }
+            PrimaryButton(
+                onTap: () async {
+                  if (_formKey.currentState!.validate()) {
+                    if (isChecked_service == true &&
+                        isChecked_privacy == true) {
+                      await _register().then((UserCredential? userCredential) {
+                        userCredential!.user!.updateDisplayName(_name.text);
+                      });
+                      await Get.dialog(CupertinoAlertDialog(
+                        title: Text("회원가입 성공"),
+                        content: Text("회원가입을 축하드립니다!🥳"),
+                        actions: [
+                          CupertinoDialogAction(
+                            child: Text(
+                              "확인",
+                              style: TextStyle(fontSize: 13),
+                            ),
+                            onPressed: () => Get.offAll(() => SignInScreen()),
+                          )
+                        ],
+                      ));
+                    } else {
+                      DialogHelper.showErrSnackbar(
+                          title: "약관 미동의", description: "약관에 동의해주세요");
                     }
-                  },
-                  child: Center(
-                    child: Text(
-                      '회원가입',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Montserrat'),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+                  }
+                },
+                text: "회원가입"),
             SizedBox(height: 20.0),
           ],
         ));
   }
 
-  Future<User?> _register() async {
+  Future<UserCredential?> _register() async {
     try {
-      final user = (await _auth.createUserWithEmailAndPassword(
+      UserCredential? userCredential =
+          await _auth.createUserWithEmailAndPassword(
         email: _email.text,
         password: _password.text,
-      ))
-          .user;
-      return user;
+      );
+      return userCredential;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         DialogHelper.showErrSnackbar(
@@ -316,7 +305,7 @@ class _SignUpFormState extends State<SignUpForm> {
             title: "이메일 중복", description: "이미 존재하는 계정입니다. 다른 이메일을 입력해주세요!");
       }
     } catch (e) {
-      print(e);
+      DialogHelper.showErrSnackbar(description: e.toString());
     }
   }
 }
