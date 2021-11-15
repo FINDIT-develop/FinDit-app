@@ -1,3 +1,4 @@
+import 'package:FinDit/screens/find_password/find_password_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:FinDit/constants/constants.dart';
@@ -30,21 +31,21 @@ class SignInScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  // InkWell(
+                  //   onTap: () => Get.to(() => FindEmailScreen()),
+                  //   child: Text(
+                  //     '이메일 찾기',
+                  //     style: TextStyle(
+                  //       color: kTextColor,
+                  //       fontFamily: 'Montserrat',
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(width: 10.0),
+                  // Text("|"),
+                  // SizedBox(width: 10.0),
                   InkWell(
-                    onTap: () {},
-                    child: Text(
-                      '이메일 찾기',
-                      style: TextStyle(
-                        color: kTextColor,
-                        fontFamily: 'Montserrat',
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 10.0),
-                  Text("|"),
-                  SizedBox(width: 10.0),
-                  InkWell(
-                    onTap: () {},
+                    onTap: () => Get.to(() => FindPasswordScreen()),
                     child: Text(
                       '비밀번호 찾기',
                       style: TextStyle(
@@ -70,30 +71,6 @@ class SignInScreen extends StatelessWidget {
               ),
               SizedBox(height: 100),
             ]),
-            // Align(
-            //   alignment: Alignment.bottomCenter,
-            //   child: Container(
-            //     height: 50.0,
-            //     child: Material(
-            //       borderRadius: BorderRadius.circular(10.0),
-            //       color: Colors.blueAccent,
-            //       elevation: 0.0,
-            //       child: GestureDetector(
-            //         onTap: () => Get.to(() => SignUpScreen()),
-            //         child: Center(
-            //           child: Text(
-            //             '회원가입하고 핀딧 즐기기 ',
-            //             style: TextStyle(
-            //               color: Colors.white,
-            //               fontSize: 16,
-            //               fontWeight: FontWeight.bold,
-            //             ),
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // )
           ],
         ),
       ),
