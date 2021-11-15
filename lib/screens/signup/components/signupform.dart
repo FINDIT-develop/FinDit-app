@@ -1,10 +1,14 @@
 import 'dart:convert';
 
 import 'package:FinDit/controllers/user_controller.dart';
+import 'package:FinDit/screens/signin/signin_screen.dart';
 import 'package:FinDit/screens/widgets/dialog_helper.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:FinDit/constants/constants.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class SignUpForm extends StatefulWidget {
@@ -15,14 +19,17 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  UserController userController = UserController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
-  TextEditingController _passwordcheck = TextEditingController();
-  TextEditingController _name = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final TextEditingController _passwordcheck = TextEditingController();
+  final TextEditingController _name = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   bool isChecked = false;
+  bool isChecked_privacy = false;
+  bool isChecked_service = false;
+  bool isChecked_marketing = false;
   // _MyCustomFormState가 생성될 때 호출
   @override
   void initState() {
@@ -56,6 +63,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
                 return null;
               },
+              cursorColor: kActiveColor,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(10),
                 hintText: '이메일 입력',
@@ -64,7 +72,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey)),
                 focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blueAccent)),
+                    borderSide: BorderSide(color: kActiveColor)),
                 focusedErrorBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.red)),
                 errorBorder: UnderlineInputBorder(
@@ -83,6 +91,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 }
                 return null;
               },
+              cursorColor: kActiveColor,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(10),
                 hintText: "비밀번호 입력",
@@ -91,7 +100,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey)),
                 focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blueAccent)),
+                    borderSide: BorderSide(color: kActiveColor)),
                 focusedErrorBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.red)),
                 errorBorder: UnderlineInputBorder(
@@ -111,6 +120,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 }
                 return null;
               },
+              cursorColor: kActiveColor,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(10),
                 hintText: "비밀번호 확인",
@@ -119,7 +129,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey)),
                 focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blueAccent)),
+                    borderSide: BorderSide(color: kActiveColor)),
                 focusedErrorBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.red)),
                 errorBorder: UnderlineInputBorder(
@@ -127,43 +137,52 @@ class _SignUpFormState extends State<SignUpForm> {
               ),
               obscureText: true,
             ),
-            SizedBox(height: 20.0),
+            SizedBox(height: 30.0),
             TextFormField(
               controller: _name,
               validator: (String? value) {
                 if (value!.isEmpty) {
-                  return '닉네임을 입력해주세요';
+                  return '닉네임을 입력해주세요.';
                 }
-                if (value.length < 2) {
-                  return "2자리 이상 입력해주세요";
-                }
+
                 return null;
               },
+              cursorColor: kActiveColor,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(10),
-                hintText: "닉네임 입력",
+                hintText: '닉네임 입력',
                 hintStyle:
                     TextStyle(fontFamily: 'Montserrat', color: Colors.grey),
                 enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey)),
                 focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: Colors.blueAccent)),
+                    borderSide: BorderSide(color: kActiveColor)),
                 focusedErrorBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.red)),
                 errorBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.red)),
               ),
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: 50.0),
             Container(
               height: 30,
               child: Row(
                 children: [
                   Checkbox(
+                      activeColor: kActiveColor,
                       value: isChecked,
                       onChanged: (value) {
                         setState(() {
                           isChecked = value!;
+                          if (isChecked == false) {
+                            isChecked_service = false;
+                            isChecked_privacy = false;
+                            isChecked_marketing = false;
+                          } else {
+                            isChecked_service = true;
+                            isChecked_privacy = true;
+                            isChecked_marketing = true;
+                          }
                         });
                       }),
                   Text("전체동의")
@@ -176,13 +195,17 @@ class _SignUpFormState extends State<SignUpForm> {
               child: Row(
                 children: [
                   Checkbox(
-                      value: isChecked,
+                      activeColor: kActiveColor,
+                      value: isChecked_service,
                       onChanged: (value) {
                         setState(() {
-                          isChecked = value!;
+                          isChecked_service = value!;
+                          if (isChecked_service == false) {
+                            isChecked = false;
+                          }
                         });
                       }),
-                  Text("이용약관에 동의합니다.")
+                  Text("[필수] 이용약관에 동의합니다.")
                 ],
               ),
             ),
@@ -191,13 +214,36 @@ class _SignUpFormState extends State<SignUpForm> {
               child: Row(
                 children: [
                   Checkbox(
-                      value: isChecked,
+                      activeColor: kActiveColor,
+                      value: isChecked_privacy,
                       onChanged: (value) {
                         setState(() {
-                          isChecked = value!;
+                          isChecked_privacy = value!;
+                          if (isChecked_privacy == false) {
+                            isChecked = false;
+                          }
                         });
                       }),
-                  Text("개인정보 수집 및 이용에 동의합니다.")
+                  Text("[필수] 개인정보 수집 및 이용에 동의합니다.")
+                ],
+              ),
+            ),
+            Container(
+              height: 30,
+              child: Row(
+                children: [
+                  Checkbox(
+                      activeColor: kActiveColor,
+                      value: isChecked_marketing,
+                      onChanged: (value) {
+                        setState(() {
+                          isChecked_marketing = value!;
+                          if (isChecked_marketing == false) {
+                            isChecked = false;
+                          }
+                        });
+                      }),
+                  Text("[선택] 광고성 정보 수신에 모두 동의합니다.")
                 ],
               ),
             ),
@@ -211,25 +257,27 @@ class _SignUpFormState extends State<SignUpForm> {
                 child: GestureDetector(
                   onTap: () async {
                     if (_formKey.currentState!.validate()) {
-                      var request = {
-                        "email": _email.text,
-                        "password": _password.text,
-                        "name": _name.text,
-                      };
-                      String url = "http://moic-findit.site:3000/app/users";
-                      var body = json.encode(request);
-                      http.Response response = await http.post(Uri.parse(url),
-                          headers: {"Content-Type": "application/json"},
-                          body: body);
-
-                      final responseData = json.decode(response.body);
-
-                      if (response.statusCode == 200) {
-                        // If the call to the server was successful, parse the JSON
-                        print(responseData);
+                      if (isChecked_service == true &&
+                          isChecked_privacy == true) {
+                        await _register().then((var user) {
+                          user!.updateDisplayName(_name.text);
+                        });
+                        await Get.dialog(CupertinoAlertDialog(
+                          title: Text("회원가입 성공"),
+                          content: Text("회원가입을 축하드립니다!🥳"),
+                          actions: [
+                            CupertinoDialogAction(
+                              child: Text(
+                                "확인",
+                                style: TextStyle(fontSize: 13),
+                              ),
+                              onPressed: () => Get.offAll(() => SignInScreen()),
+                            )
+                          ],
+                        ));
                       } else {
-                        // If that call was not successful, throw an error.
-                        throw Exception('Failed to load post');
+                        DialogHelper.showErrSnackbar(
+                            title: "약관 미동의", description: "약관에 동의해주세요");
                       }
                     }
                   },
@@ -251,20 +299,24 @@ class _SignUpFormState extends State<SignUpForm> {
         ));
   }
 
-  Future<dynamic> signup(Map<String, dynamic> request) async {
-    String url = "http://moic-findit.site:3000/app/users";
-    var body = json.encode(request);
-    http.Response response = await http.post(Uri.parse(url),
-        headers: {"Content-Type": "application/json"}, body: body);
-
-    final responseData = json.decode(response.body);
-
-    if (response.statusCode == 200) {
-      // If the call to the server was successful, parse the JSON
-      return print(responseData);
-    } else {
-      // If that call was not successful, throw an error.
-      throw Exception('Failed to load post');
+  Future<User?> _register() async {
+    try {
+      final user = (await _auth.createUserWithEmailAndPassword(
+        email: _email.text,
+        password: _password.text,
+      ))
+          .user;
+      return user;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        DialogHelper.showErrSnackbar(
+            title: "취약한 비밀번호", description: "비밀번호가 취약합니다.");
+      } else if (e.code == 'email-already-in-use') {
+        DialogHelper.showErrSnackbar(
+            title: "이메일 중복", description: "이미 존재하는 계정입니다. 다른 이메일을 입력해주세요!");
+      }
+    } catch (e) {
+      print(e);
     }
   }
 }
