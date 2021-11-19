@@ -13,8 +13,8 @@ AppBar buildAppBar() {
     //   onPressed: () {},
     // ),
     title: Image.asset(
-      "assets/icons/findit_logo.png",
-      scale: 3,
+      "assets/icons/FINDIT_logo.png",
+      scale: 6,
     ),
     actions: <Widget>[
       IconButton(

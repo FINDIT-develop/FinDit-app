@@ -1,3 +1,4 @@
+import 'package:FinDit/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,7 @@ class DialogHelper {
       ),
       actions: [
         CupertinoDialogAction(
+          onPressed: () => Get.back(),
           child: Text(
             '확인',
             style: TextStyle(fontSize: 13),
@@ -24,7 +26,10 @@ class DialogHelper {
   }
 
   static void showErrSnackbar({String title = 'Error', String? description}) {
-    Get.snackbar(title, description ?? '');
+    Get.snackbar(title, description ?? '',
+        backgroundColor: kActiveColor,
+        colorText: Colors.white,
+        duration: Duration(seconds: 2));
   }
 
   //show toast
