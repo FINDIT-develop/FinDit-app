@@ -34,7 +34,7 @@ class _FindPasswordScreenState extends State<FindPasswordScreen> {
                 style: TextStyle(
                   fontFamily: 'Montserrat',
                   color: kActiveColor,
-                  fontSize: 30,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold,
                   //fontStyle: FontStyle.italic
                 ),
