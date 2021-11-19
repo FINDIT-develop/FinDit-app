@@ -48,24 +48,24 @@ class Id {
 
 class Snippet {
   Snippet({
-    required this.publishedAt,
-    required this.channelId,
-    required this.title,
-    required this.description,
-    required this.thumbnails,
-    required this.channelTitle,
-    required this.liveBroadcastContent,
-    required this.publishTime,
+    this.publishedAt,
+    this.channelId,
+    this.title,
+    this.description,
+    this.thumbnails,
+    this.channelTitle,
+    this.liveBroadcastContent,
+    this.publishTime,
   });
 
-  DateTime publishedAt;
-  String channelId;
-  String title;
-  String description;
-  Thumbnails thumbnails;
-  String channelTitle;
-  String liveBroadcastContent;
-  DateTime publishTime;
+  DateTime? publishedAt;
+  String? channelId;
+  String? title;
+  String? description;
+  Thumbnails? thumbnails;
+  String? channelTitle;
+  String? liveBroadcastContent;
+  DateTime? publishTime;
 
   factory Snippet.fromJson(Map<String, dynamic> json) => Snippet(
         publishedAt: DateTime.parse(json["publishedAt"]),
@@ -81,14 +81,14 @@ class Snippet {
       );
 
   Map<String, dynamic> toJson() => {
-        "publishedAt": publishedAt.toIso8601String(),
+        "publishedAt": publishedAt!.toIso8601String(),
         "channelId": channelId,
         "title": title,
         "description": description,
-        "thumbnails": thumbnails.toJson(),
+        "thumbnails": thumbnails!.toJson(),
         "channelTitle": channelTitle,
         "liveBroadcastContent": liveBroadcastContent,
-        "publishTime": publishTime.toIso8601String(),
+        "publishTime": publishTime!.toIso8601String(),
       };
 }
 

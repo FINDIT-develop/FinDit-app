@@ -13,11 +13,11 @@ class VideoController extends GetxController {
 
   @override
   void onInit() async {
-    Statistics? loadStatistics =
+    var loadStatistics =
         await YoutubeService.to.getVideoInfoById(video!.id!.videoId!);
     statistics(loadStatistics);
-    Youtuber? loadYoutuber =
-        await YoutubeService.to.getYoutuberInfoById(video!.snippet!.channelId);
+    var loadYoutuber =
+        await YoutubeService.to.getYoutuberInfoById(video!.snippet!.channelId!);
     youtuber(loadYoutuber);
     super.onInit();
   }
@@ -25,8 +25,9 @@ class VideoController extends GetxController {
   String get viewCountString => "조회수 ${statistics.value.viewCount ?? '-'}회";
 
   String get youtuberThumbnailUrl {
-    if (youtuber.value.snippet == null)
-      return "https://cdn4.iconfinder.com/data/icons/small-n-flat/24/user-alt-512.png";
-    return youtuber.value.snippet!.thumbnails.medium.url;
+    if (youtuber.value.snippet == null) {
+      return "https://icon-library.com/images/no-profile-pic-icon/no-profile-pic-icon-11.jpg";
+    }
+    return youtuber.value.snippet!.thumbnails!.high.url;
   }
 }

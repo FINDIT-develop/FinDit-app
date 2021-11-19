@@ -1,3 +1,4 @@
+import 'package:FinDit/constants/constants.dart';
 import 'package:FinDit/constants/size_config.dart';
 import 'package:FinDit/controllers/video_cotroller.dart';
 import 'package:FinDit/models/video.dart';
@@ -26,17 +27,19 @@ class _VideoWidgetState extends State<VideoWidget> {
   Widget _thumbnail() {
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Container(
+        height: 190,
         clipBehavior: Clip.antiAliasWithSaveLayer,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
         child: CachedNetworkImage(
-            imageUrl: widget.video.snippet!.thumbnails.medium.url,
+            imageUrl: widget.video.snippet!.thumbnails!.high.url,
             placeholder: (context, url) => Container(
-                  height: 230,
                   child: Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
             fit: BoxFit.fitWidth),
-        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
       ),
     ]);
   }
@@ -59,35 +62,32 @@ class _VideoWidgetState extends State<VideoWidget> {
             child: Column(
               children: [
                 Text(
-                  widget.video.snippet!.title,
+                  widget.video.snippet!.title!,
                   maxLines: 2,
                   style: TextStyle(fontSize: 13),
                 ),
                 Row(
                   children: [
                     Text(
-                      widget.video.snippet!.channelTitle,
+                      widget.video.snippet!.channelTitle!,
                       style: TextStyle(
                         fontSize: 12,
-                        color: Colors.black.withOpacity(0.8),
+                        color: Colors.grey,
                       ),
                     ),
-                    // Obx(
-                    //   () => Text(
-                    //     _videoController!.viewCountString,
-                    //     style: TextStyle(
-                    //       fontSize: 12,
-                    //       color: Colors.black.withOpacity(0.6),
-                    //     ),
-                    //   ),
-                    // ),
-                    Text(" · "),
                     Text(
-                      DateFormat("yyyy-MM-dd")
-                          .format(widget.video.snippet!.publishTime),
+                      " · ",
                       style: TextStyle(
                         fontSize: 12,
-                        color: Colors.black.withOpacity(0.6),
+                        color: Colors.grey,
+                      ),
+                    ),
+                    Text(
+                      DateFormat("yyyy-MM-dd")
+                          .format(widget.video.snippet!.publishTime!),
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
                       ),
                     )
                   ],
