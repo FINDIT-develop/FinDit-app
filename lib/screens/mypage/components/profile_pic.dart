@@ -1,10 +1,12 @@
 import 'package:FinDit/constants/constants.dart';
+import 'package:FinDit/screens/account/accout_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfilePic extends StatelessWidget {
-  const ProfilePic({Key? key, required this.user}) : super(key: key);
-  final User user;
+  const ProfilePic({Key? key, this.user}) : super(key: key);
+  final User? user;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +25,7 @@ class ProfilePic extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "${user.displayName}님, 안녕하세요!",
+                      "${user!.displayName}님, 안녕하세요!",
                       style: TextStyle(
                           fontSize: 20,
                           color: kPrimaryColor,
@@ -34,12 +36,14 @@ class ProfilePic extends StatelessWidget {
                       icon: Icon(
                         Icons.arrow_forward_ios,
                       ),
-                      onPressed: () {},
+                      onPressed: () => Get.to(() => AccountScreen(
+                            user: user!,
+                          )),
                     )
                   ],
                 ),
                 Text(
-                  user.email.toString(),
+                  user!.email.toString(),
                   style: TextStyle(fontFamily: 'Montserrat', fontSize: 16),
                 ),
                 Container()

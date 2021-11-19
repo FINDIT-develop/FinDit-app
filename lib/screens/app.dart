@@ -1,19 +1,22 @@
 import 'package:FinDit/constants/constants.dart';
 import 'package:FinDit/controllers/app_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:FinDit/screens/home/home_screen.dart';
 import 'package:FinDit/screens/like/like_screen.dart';
 import 'package:FinDit/screens/mypage/mypage_screen.dart';
 import 'package:FinDit/screens/store/store_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 
 class App extends GetView<AppController> {
-  const App({Key? key}) : super(key: key);
-
+  const App({Key? key, this.user}) : super(key: key);
+  final User? user;
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> _navitems = [
+    var _navitems = <Map<String, dynamic>>[
       {
         "icon": "assets/icons/home.svg",
         "active_icon": "assets/icons/home_active.svg",
@@ -35,7 +38,15 @@ class App extends GetView<AppController> {
         "title": "MY"
       },
     ];
-    List _view = [HomeScreen(), StoreScreen(), LikeScreen(), MyPageScreen()];
+    var _view = [
+      HomeScreen(),
+      StoreScreen(),
+      LikeScreen(),
+      MyPageScreen(
+        user: user,
+      )
+    ];
+
     return Scaffold(
         body: Obx(() => _view[controller.currentIndex.value]),
         bottomNavigationBar: Obx(

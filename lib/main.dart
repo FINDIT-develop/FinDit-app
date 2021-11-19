@@ -1,18 +1,19 @@
 import 'package:FinDit/binding/init_binding.dart';
 import 'package:FinDit/constants/theme.dart';
 import 'package:FinDit/controllers/product_controller.dart';
-import 'package:FinDit/controllers/video_cotroller.dart';
-
 import 'package:FinDit/controllers/video_detail_controller.dart';
+import 'package:FinDit/screens/root.dart';
 import 'package:FinDit/screens/search/search_screen.dart';
 import 'package:FinDit/screens/store/store_screen.dart';
 import 'package:FinDit/screens/video_detail/video_detail_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:FinDit/screens/app.dart';
 import 'controllers/search_controller.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -21,14 +22,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'FinDit APP',
+      title: 'FINDIT APP',
       theme: theme(),
       initialRoute: "/",
       initialBinding: InitBinding(),
       getPages: [
         GetPage(
           name: "/",
-          page: () => App(),
+          page: () => RootPage(),
         ),
         GetPage(
           name: "/detail/:videoId",

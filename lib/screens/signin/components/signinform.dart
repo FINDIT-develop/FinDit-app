@@ -1,4 +1,5 @@
 import 'package:FinDit/screens/app.dart';
+import 'package:FinDit/screens/root.dart';
 import 'package:FinDit/screens/widgets/dialog_helper.dart';
 import 'package:FinDit/screens/widgets/primary_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -101,13 +102,12 @@ class _SignInFormState extends State<SignInForm> {
                 if (_formKey.currentState!.validate()) {
                   await signin().then((UserCredential? userCredential) {
                     if (userCredential != null) {
-                      Get.offAll(() => App(), arguments: userCredential.user);
+                      Get.offAll(() => RootPage());
                     }
                   });
                 }
               },
               text: "로그인"),
-          SizedBox(height: 20.0),
         ],
       ),
     );

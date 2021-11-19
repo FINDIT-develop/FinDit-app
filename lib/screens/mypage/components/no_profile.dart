@@ -13,7 +13,6 @@ class NoProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-      height: 230,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -51,10 +50,10 @@ class NoProfile extends StatelessWidget {
             ),
           ),
           SizedBox(height: 20),
-          PrimaryButton(
-              onTap: () =>
-                  Get.to(() => SignInScreen(), transition: Transition.downToUp),
-              text: "로그인 / 회원가입")
+          // PrimaryButton(
+          //     onTap: () =>
+          //         Get.to(() => SignInScreen(), transition: Transition.downToUp),
+          //     text: "로그인 / 회원가입")
         ],
       ),
     );

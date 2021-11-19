@@ -49,7 +49,7 @@ class _SignUpFormState extends State<SignUpForm> {
               style: TextStyle(
                 //fontFamily: 'Montserrat',
                 color: kActiveColor,
-                fontSize: 30,
+                fontSize: 27,
                 fontWeight: FontWeight.bold,
                 //fontStyle: FontStyle.italic
               ),

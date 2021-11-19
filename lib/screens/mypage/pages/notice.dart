@@ -33,9 +33,8 @@ class NoticeScreen extends StatelessWidget {
                     tilePadding: EdgeInsets.zero,
                     title: Text(
                       "[공지] 영상 패션 검색 플랫폼, 핀딧 베타 런칭 ✨",
-                      textScaleFactor: 1,
                       style: TextStyle(
-                        fontSize: 15.0,
+                        fontSize: 14.0,
                         fontWeight: FontWeight.normal,
                         color: kActiveColor,
                       ),
@@ -49,7 +48,6 @@ class NoticeScreen extends StatelessWidget {
 서비스 문의 / 피드백 : moic.peach@gmail.com
 위 연락처로 연락 주시면 항상 귀기울여 듣고 서비스 개선에 반영하겠습니다.
       ''',
-                        textScaleFactor: 1,
                         style: TextStyle(
                             fontFamily: "Montserrat",
                             fontSize: 13,
@@ -62,9 +60,8 @@ class NoticeScreen extends StatelessWidget {
                     tilePadding: EdgeInsets.zero,
                     title: Text(
                       "[이벤트] 테스터 모집",
-                      textScaleFactor: 1,
                       style: TextStyle(
-                        fontSize: 15.0,
+                        fontSize: 14.0,
                         color: kActiveColor,
                       ),
                     ),
@@ -73,7 +70,6 @@ class NoticeScreen extends StatelessWidget {
                         '''
       핀딧과 함께할 테스터를 모집합니다!
       ''',
-                        textScaleFactor: 1,
                         style: TextStyle(
                             fontSize: 13, color: kTextColor, height: 1.5),
                       ),

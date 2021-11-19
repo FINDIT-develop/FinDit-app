@@ -31,12 +31,13 @@ class MyPageScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          if (user != null)
-            ProfilePic(
-              user: user!,
-            )
-          else
-            NoProfile(),
+          Visibility(
+            visible: user == null ? false : true,
+            replacement: NoProfile(),
+            child: ProfilePic(
+              user: user,
+            ),
+          ),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
@@ -75,7 +76,7 @@ class MyPageScreen extends StatelessWidget {
                     press: () {},
                   ),
                   ProfileMenu(
-                    text: "버전정보 1.0.0",
+                    text: "버전정보  1.0.0",
                     press: () {},
                   ),
                 ],

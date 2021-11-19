@@ -1,4 +1,6 @@
 import 'package:FinDit/screens/find_password/find_password_screen.dart';
+import 'package:FinDit/screens/widgets/primary_button.dart';
+import 'package:FinDit/screens/widgets/secondary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:FinDit/constants/constants.dart';
@@ -27,47 +29,27 @@ class SignInScreen extends StatelessWidget {
           children: [
             Column(children: [
               SignInForm(),
-              //SizedBox(height: 10.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  // InkWell(
-                  //   onTap: () => Get.to(() => FindEmailScreen()),
-                  //   child: Text(
-                  //     '이메일 찾기',
-                  //     style: TextStyle(
-                  //       color: kTextColor,
-                  //       fontFamily: 'Montserrat',
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(width: 10.0),
-                  // Text("|"),
-                  // SizedBox(width: 10.0),
-                  InkWell(
-                    onTap: () => Get.to(() => FindPasswordScreen()),
+              SizedBox(height: 10.0),
+              SecondaryButton(
+                  onTap: () => Get.to(() => SignUpScreen()), text: "이메일로 회원가입"),
+              SizedBox(height: 10.0),
+              Align(
+                alignment: Alignment.centerRight,
+                child: InkWell(
+                  onTap: () => Get.to(() => FindPasswordScreen()),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
                     child: Text(
-                      '비밀번호 찾기',
+                      '비밀번호를 잊어버리셨나요?',
                       style: TextStyle(
                         color: kTextColor,
+                        //fontWeight: FontWeight.w500,
+                        decoration: TextDecoration.underline,
                         fontFamily: 'Montserrat',
                       ),
                     ),
                   ),
-                  SizedBox(width: 10.0),
-                  Text("|"),
-                  SizedBox(width: 10.0),
-                  InkWell(
-                    onTap: () => Get.to(() => SignUpScreen()),
-                    child: Text(
-                      '회원가입',
-                      style: TextStyle(
-                        color: kTextColor,
-                        fontFamily: 'Montserrat',
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
               SizedBox(height: 100),
             ]),
