@@ -1,50 +1,29 @@
+import 'dart:io';
+
 import 'package:FinDit/constants/constants.dart';
 import 'package:FinDit/controllers/home_controller.dart';
 import 'package:FinDit/controllers/product_controller.dart';
-import 'package:FinDit/controllers/video_cotroller.dart';
 import 'package:FinDit/controllers/video_detail_controller.dart';
-import 'package:FinDit/models/product.dart';
-import 'package:FinDit/models/video.dart';
 import 'package:FinDit/screens/product_detail/product_detail_screen.dart';
 import 'package:FinDit/screens/store/components/item_card.dart';
-import 'package:FinDit/screens/webview.dart';
+import 'package:FinDit/screens/widgets/dialog_helper.dart';
+import 'package:FinDit/screens/widgets/primary_button.dart';
+import 'package:FinDit/screens/widgets/webview.dart';
 import 'package:FinDit/screens/widgets/video_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'components/video_player.dart';
-
-import 'dart:io';
-import 'dart:ui' as ui;
-import 'dart:typed_data';
-
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:intl/intl.dart';
+import 'package:native_screenshot/native_screenshot.dart';
+import '../widgets/video_player.dart';
+import 'package:screenshot/screenshot.dart';
 
 class VideoDetailScreen extends GetView<YoutubeDetailController> {
   VideoDetailScreen({Key? key}) : super(key: key);
   final HomeController homecontroller = Get.put(HomeController());
   final ProductController productController = Get.put(ProductController());
-  var globalKey = new GlobalKey();
-
-  void _capture() async {
-    print("START CAPTURE");
-    var renderObject = globalKey.currentContext!.findRenderObject();
-    if (renderObject is RenderRepaintBoundary) {
-      var boundary = renderObject;
-      ui.Image image = await boundary.toImage();
-      final directory = (await getApplicationDocumentsDirectory()).path;
-      ByteData? byteData =
-          await image.toByteData(format: ui.ImageByteFormat.png);
-      Uint8List pngBytes = byteData!.buffer.asUint8List();
-      print(pngBytes);
-      File imgFile = new File('$directory/screenshot.png');
-      imgFile.writeAsBytes(pngBytes);
-      print("FINISH CAPTURE ${imgFile.path}");
-    }
-  }
+  var globalKey = GlobalKey();
+  final ScreenshotController screenshotController = ScreenshotController();
 
   Widget _titleZone() {
     return SliverToBoxAdapter(
@@ -57,21 +36,23 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
             children: [
               Expanded(
                 child: Text(
-                  controller.video.value.snippet!.title,
+                  controller.video.value.snippet!.title!,
                   style: TextStyle(height: 1.2),
                   maxLines: 2,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                child: InkWell(
-                    onTap: () {},
-                    child: SvgPicture.asset("assets/icons/like_active.svg")),
-              )
             ],
           ),
           SizedBox(
             height: 10,
+          ),
+          Text(
+            DateFormat("yyyy.MM.dd")
+                .format(controller.video.value.snippet!.publishTime!),
+            style: TextStyle(color: Colors.grey),
+          ),
+          SizedBox(
+            height: 20,
           ),
           Row(
             children: [
@@ -86,7 +67,13 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
                 width: 10,
               ),
               Expanded(
-                  child: Text(controller.video.value.snippet!.channelTitle))
+                  child: Text(controller.video.value.snippet!.channelTitle!)),
+              Padding(
+                padding: const EdgeInsets.only(left: 10.0, right: 5),
+                child: InkWell(
+                    onTap: () {},
+                    child: SvgPicture.asset("assets/icons/like_active.svg")),
+              ),
             ],
           ),
         ],
@@ -143,6 +130,7 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
 
   @override
   Widget build(BuildContext context) {
+    Widget _imgHolder;
     return Scaffold(
       body: SafeArea(
         bottom: false,
@@ -157,7 +145,7 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
                   )),
               actions: [
                 IconButton(
-                    onPressed: () => Get.to(WebViewExample()),
+                    onPressed: () => Get.to(() => WebViewExample()),
                     icon: Icon(Icons.link))
               ],
               floating: true,
@@ -167,8 +155,8 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
             ),
             SliverAppBar(
               automaticallyImplyLeading: false,
-              title: RepaintBoundary(
-                  key: globalKey,
+              title: Screenshot(
+                  controller: screenshotController,
                   child: VideoPlayer(controller: controller.playController)),
               floating: false,
               snap: false,
@@ -194,38 +182,53 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
                     )),
               ),
             ),
-            _inthisvideo(),
+            //_inthisvideo(),
             SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 20, right: 20, top: 20, bottom: 20),
-                child: TextButton(
-                  onPressed: _capture,
-                  child: Text("영상 속 정보",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      )),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: const EdgeInsets.all(kDefaultPadding),
+                  child: PrimaryButton(
+                    text: "AI로 의류 찾기",
+                    onTap: () async {
+                      var path = await NativeScreenshot.takeScreenshot();
+
+                      debugPrint('Screenshot taken, path: $path');
+
+                      if (path == null || path.isEmpty) {
+                        DialogHelper.showErrSnackbar(
+                            description: 'Error taking the screenshot :(');
+                        return;
+                      } // if error
+                      DialogHelper.showErrSnackbar(
+                          title: '캡쳐 완료',
+                          description:
+                              'The screenshot has been saved to: $path');
+
+                      var imgFile = File(path);
+                      _imgHolder = Image.file(imgFile);
+                    },
+                  ),
                 ),
               ),
             ),
-            SliverToBoxAdapter(
-              child: Divider(
-                thickness: 0.75,
-                color: Colors.grey[200],
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
-                child: Text("추천 영상",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    )),
-              ),
-            ),
-            _recommendvideo()
+            // SliverToBoxAdapter(
+            //   child: Divider(
+            //     thickness: 0.75,
+            //     color: Colors.grey[200],
+            //   ),
+            // ),
+            // SliverToBoxAdapter(
+            //   child: Padding(
+            //     padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+            //     child: Text("추천 영상",
+            //         style: TextStyle(
+            //           fontSize: 18,
+            //           fontWeight: FontWeight.bold,
+            //         )),
+            //   ),
+            // ),
+            //_recommendvideo()
           ],
         ),
       ),
