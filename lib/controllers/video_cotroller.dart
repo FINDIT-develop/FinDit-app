@@ -1,7 +1,7 @@
 import 'package:FinDit/models/statistics.dart';
 import 'package:FinDit/models/video.dart';
 import 'package:FinDit/models/youtuber.dart';
-import 'package:FinDit/repository/youtube_service.dart';
+import 'package:FinDit/services/youtube_service.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 

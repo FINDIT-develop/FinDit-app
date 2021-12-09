@@ -1,5 +1,5 @@
 import 'package:FinDit/models/search_video_result.dart';
-import 'package:FinDit/repository/youtube_service.dart';
+import 'package:FinDit/services/youtube_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
@@ -12,11 +12,13 @@ class SearchController extends GetxController {
   ScrollController scrollController = ScrollController();
   late String _currentKeyword;
   Rx<YoutubeVideoResult> youtubeVideoResult = YoutubeVideoResult(items: []).obs;
+  
+  
   @override
   void onInit() async {
     _event();
     _profs = await SharedPreferences.getInstance();
-    List<dynamic>? initData = _profs.get(key) as List?;
+    var initData = _profs.get(key) as List?;
 
     history(initData!.map<String>((_) => _.toString()).toList());
     super.onInit();
@@ -40,11 +42,11 @@ class SearchController extends GetxController {
   }
 
   void _searchYoutube(String searchKey) async {
-    YoutubeVideoResult? youtubeVideoResultFromServer = await YoutubeService.to
+    var youtubeVideoResultFromServer = await YoutubeService.to
         .search(searchKey, youtubeVideoResult.value.nextPagetoken ?? "");
 
     if (youtubeVideoResultFromServer != null &&
-        youtubeVideoResultFromServer.items.length > 0) {
+        youtubeVideoResultFromServer.items.isNotEmpty) {
       youtubeVideoResult.update((youtube) {
         youtube!.nextPagetoken = youtubeVideoResultFromServer.nextPagetoken;
         youtube.items.addAll(youtubeVideoResultFromServer.items);
