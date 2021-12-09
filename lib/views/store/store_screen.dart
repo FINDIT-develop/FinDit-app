@@ -16,6 +16,7 @@ class StoreScreen extends StatelessWidget {
         appBar: AppBar(
           title: TextField(
             onTap: () => Get.toNamed("search/"),
+            readOnly: true,
             decoration: InputDecoration(
                 fillColor: Colors.grey[200],
                 filled: true,

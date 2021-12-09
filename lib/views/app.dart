@@ -23,18 +23,18 @@ class App extends GetView<AppController> {
         "title": "HOME"
       },
       {
-        "icon": "assets/icons/shop.svg",
+        "icon": "assets/icons/store.svg",
         "active_icon": "assets/icons/store_active.svg",
         "title": "STORE"
       },
       {
-        "icon": "assets/icons/like_icon.svg",
-        "active_icon": "assets/icons/like_icon.svg",
+        "icon": "assets/icons/like.svg",
+        "active_icon": "assets/icons/like_active.svg",
         "title": "LIKE"
       },
       {
-        "icon": "assets/icons/user.svg",
-        "active_icon": "assets/icons/home_active.svg",
+        "icon": "assets/icons/my.svg",
+        "active_icon": "assets/icons/my_active.svg",
         "title": "MY"
       },
     ];
@@ -69,6 +69,12 @@ class App extends GetView<AppController> {
                     src: _navitems[index]['icon'],
                   ),
                 ),
+                activeIcon: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: buildSvgIcon(
+                    src: _navitems[index]['active_icon'],
+                  ),
+                ),
                 //tooltip: _navitems[index]["title"],
                 label: _navitems[index]["title"],
               ),
@@ -82,7 +88,6 @@ class App extends GetView<AppController> {
       src,
       width: 21,
       height: 21,
-      color: kActiveColor,
     );
   }
 }
