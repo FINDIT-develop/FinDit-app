@@ -43,6 +43,10 @@ class _CategoriesState extends State<Categories> {
             ),
             Container(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 15),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color:
+                      selectedIndex == index ? kActiveColor : Colors.grey[100]),
               child: Text(
                 categories[index],
                 style: TextStyle(
@@ -51,10 +55,6 @@ class _CategoriesState extends State<Categories> {
                   color: selectedIndex == index ? Colors.white : kTextColor,
                 ),
               ),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color:
-                      selectedIndex == index ? kActiveColor : Colors.grey[100]),
             ),
           ],
         ),

@@ -74,7 +74,7 @@ class SearchScreen extends GetView<SearchController> {
         ),
       ),
       body: Obx(
-        () => controller.youtubeVideoResult.value.items.length > 0
+        () => controller.youtubeVideoResult.value.items.isNotEmpty
             ? _searchResultView()
             : _searchHistory(),
       ),

@@ -11,6 +11,7 @@ class YoutubeDetailController extends GetxController {
   Rx<Youtuber> youtuber = Youtuber().obs;
   late YoutubePlayerController playController;
   VideoController? videoController;
+  
   @override
   void onInit() {
     videoController =

@@ -29,19 +29,11 @@ class HomeScreen extends StatelessWidget {
                 child: BannerWidget(),
               ),
               const SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: 20.0, right: 20, top: 20, bottom: 10),
-                  child: Text(
-                    "정연님을 위한 추천 영상",
-                    style: TextStyle(
-                      fontSize: 19,
-                      color: kActiveColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
+                  child: Padding(
+                padding:
+                    EdgeInsets.only(left: 20.0, right: 20, top: 20, bottom: 10),
+                child: Text("LookBook ", style: kTitleTextStyle),
+              )),
               SliverAppBar(
                 title: Categories(),
                 floating: false,

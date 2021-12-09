@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewExample extends StatefulWidget {
+  final String link;
+  WebViewExample(this.link);
   @override
   WebViewExampleState createState() => WebViewExampleState();
 }
@@ -28,7 +30,7 @@ class WebViewExampleState extends State<WebViewExample> {
                 fontWeight: FontWeight.bold,
               ))),
       body: WebView(
-        initialUrl: 'https://www.nbkorea.com/index.action',
+        initialUrl: widget.link,
       ),
     );
   }

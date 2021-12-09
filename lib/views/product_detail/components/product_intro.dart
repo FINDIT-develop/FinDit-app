@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:FinDit/models/product.dart';
 
 import 'package:FinDit/views/constants/constants.dart';
+import 'package:intl/intl.dart';
 
 class ProductIntro extends StatelessWidget {
   const ProductIntro({
@@ -20,23 +21,24 @@ class ProductIntro extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Text(
-              "de ondo",
-              style: TextStyle(
-                color: Colors.grey[600],
-              ),
+              product.brand!,
+              style:
+                  TextStyle(color: Colors.grey[600], fontFamily: "Montserrat"),
             ),
             SizedBox(height: 10),
             Text(
-              "드 온도 화이트 핀턱팬츠",
+              product.name!,
               style: TextStyle(
                   fontSize: 20,
                   color: Colors.black,
-                  fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "Montserrat"),
             ),
             SizedBox(height: 10),
             Text(
-              "${product.price}원",
+              "${NumberFormat('###,###,###,###').format(product.price).replaceAll(' ', '')}원",
               style: TextStyle(
+                  fontFamily: "Montserrat",
                   fontSize: 22,
                   color: Colors.black,
                   fontWeight: FontWeight.bold),

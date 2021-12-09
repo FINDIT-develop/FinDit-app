@@ -1,8 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:FinDit/models/product.dart';
-
-import 'package:FinDit/views/constants/constants.dart';
 
 class ProductImage extends StatelessWidget {
   const ProductImage({
@@ -25,10 +24,8 @@ class ProductImage extends StatelessWidget {
             return Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(color: Colors.grey[200]),
-                child: Image.asset(
-                  "assets/images/dummy4.png",
-                  fit: BoxFit.fitWidth,
-                ));
+                child: CachedNetworkImage(
+                    imageUrl: product.image!, fit: BoxFit.cover));
           },
         );
       }).toList(),
