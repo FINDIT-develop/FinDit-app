@@ -37,11 +37,9 @@ class LikeScreen extends StatelessWidget {
 
       SliverToBoxAdapter(
           child: Center(
-        child: Text("좋아요한 제품이 없어요 ㅠ,ㅠ ",
+        child: Text("마음에 드는 제품은 ♡를 눌러서 저장할 수 있어요:)",
             style: TextStyle(
-                fontSize: 17,
-                color: kPrimaryColor,
-                fontWeight: FontWeight.bold)),
+                fontSize: 13, color: Colors.grey, fontFamily: "Montserrat")),
       )),
       // Padding(
       //   padding: const EdgeInsets.all(kDefaultPadding),

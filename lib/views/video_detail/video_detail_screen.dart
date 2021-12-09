@@ -136,7 +136,7 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
                   )),
               actions: [
                 IconButton(
-                    onPressed: () => Get.to(() => WebViewExample()),
+                    onPressed: () {},
                     icon: Icon(Icons.link))
               ],
               floating: true,

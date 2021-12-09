@@ -42,10 +42,11 @@ class NoticeScreen extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         '''
-반가워요!
+반가워요 :)
                                
 12/15일부터 핀딧 베타 서비스를 시작합니다!
-서비스 문의 / 피드백 : moic.peach@gmail.com
+서비스 문의 / 피드백 : moicpeach@gmail.com
+
 위 연락처로 연락 주시면 항상 귀기울여 듣고 서비스 개선에 반영하겠습니다.
       ''',
                         style: TextStyle(
@@ -53,25 +54,6 @@ class NoticeScreen extends StatelessWidget {
                             fontSize: 13,
                             color: kTextColor,
                             height: 1.5),
-                      ),
-                    ],
-                  ),
-                  ExpansionTile(
-                    tilePadding: EdgeInsets.zero,
-                    title: Text(
-                      "[이벤트] 테스터 모집",
-                      style: TextStyle(
-                        fontSize: 14.0,
-                        color: kActiveColor,
-                      ),
-                    ),
-                    children: <Widget>[
-                      Text(
-                        '''
-      핀딧과 함께할 테스터를 모집합니다!
-      ''',
-                        style: TextStyle(
-                            fontSize: 13, color: kTextColor, height: 1.5),
                       ),
                     ],
                   ),

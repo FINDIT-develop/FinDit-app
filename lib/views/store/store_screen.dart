@@ -14,9 +14,19 @@ class StoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(
-            "스토어",
-            style: TextStyle(color: kActiveColor),
+          title: TextField(
+            onTap: () => Get.toNamed("search/"),
+            decoration: InputDecoration(
+                fillColor: Colors.grey[200],
+                filled: true,
+                hintText: "영상, 상품을 검색해보세요 !",
+                contentPadding: EdgeInsets.only(left: 20, bottom: 0, right: 20),
+                enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(10)),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.transparent),
+                    borderRadius: BorderRadius.circular(10))),
           ),
         ),
         body: Column(
@@ -24,22 +34,30 @@ class StoreScreen extends StatelessWidget {
             children: <Widget>[
               Categories(),
               Expanded(
-                child: Padding(
-                    padding: const EdgeInsets.all(
-                      kDefaultPadding,
+                  child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: GridView.builder(
+                    itemCount: controller.productList.length,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 0,
+                      crossAxisSpacing: 10,
+                      childAspectRatio: 0.6,
                     ),
-                    child: GridView.builder(
-                        itemCount: controller.products.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          mainAxisSpacing: kDefaultPadding,
-                          crossAxisSpacing: kDefaultPadding,
-                          childAspectRatio: 0.65,
-                        ),
-                        itemBuilder: (context, index) => ItemCard(
-                            product: controller.products[index],
-                            press: () {}))),
-              ),
+                    itemBuilder: (context, index) => Center(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: ItemCard(
+                              product: controller.productList[index],
+                              press: () {
+                                Get.toNamed(
+                                    "/product/${controller.productList[index].productId}",
+                                    arguments: controller.productList[index]);
+                              },
+                            ),
+                          ),
+                        )),
+              )),
             ]));
   }
 }
