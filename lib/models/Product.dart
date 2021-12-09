@@ -1,40 +1,37 @@
-// To parse this JSON data, do
-//
-//     final product = productFromMap(jsonString);
-
-import 'package:meta/meta.dart';
-import 'dart:convert';
-
-List<Product> productFromMap(String str) =>
-    List<Product>.from(json.decode(str).map((x) => Product.fromMap(x)));
-
-String productToMap(List<Product> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toMap())));
-
 class Product {
   Product({
-    required this.productId,
-    required this.name,
-    required this.price,
-    required this.image,
+    this.productId,
+    this.brand,
+    this.name,
+    this.price,
+    this.image,
+    this.link,
   });
 
-  int productId;
-  String name;
-  String price;
-  String image;
+  int? productId;
+  String? brand;
+  String? name;
+  int? price;
+  String? image;
+  String? link;
 
   factory Product.fromMap(Map<String, dynamic> json) => Product(
         productId: json["productId"],
+        brand: json["brand"],
         name: json["name"],
         price: json["price"],
         image: json["image"],
+        link: json["link"],
       );
 
   Map<String, dynamic> toMap() => {
         "productId": productId,
+        "brand": brand,
         "name": name,
         "price": price,
         "image": image,
+        "link": link,
       };
+
+  empty() {}
 }
