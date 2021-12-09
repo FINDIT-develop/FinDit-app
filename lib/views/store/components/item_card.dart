@@ -52,10 +52,11 @@ class _ItemCardState extends State<ItemCard> {
                     child: GestureDetector(
                       child: SvgPicture.asset(
                         isLiked
-                            ? "assets/icons/like_full.svg"
-                            : "assets/icons/like_icon.svg",
+                            ? "assets/icons/like_active.svg"
+                            : "assets/icons/like_shadow.svg",
                         width: 20,
-                        color: kPointColor,
+                        color: isLiked ? kPointColor : Colors.white,
+                        allowDrawingOutsideViewBox: true,
                       ),
                       onTap: () {
                         bool value = !isLiked;

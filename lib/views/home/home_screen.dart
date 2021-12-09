@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                   child: Padding(
                 padding:
                     EdgeInsets.only(left: 20.0, right: 20, top: 20, bottom: 10),
-                child: Text("LookBook ", style: kTitleTextStyle),
+                child: Text("Today's LookBook ", style: kTitleTextStyle),
               )),
               SliverAppBar(
                 title: Categories(),

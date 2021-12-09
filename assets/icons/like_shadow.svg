@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45.149" height="43.347" viewBox="0 0 45.149 43.347">
+  <defs>
+    <filter id="Icon_ionic-ios-heart" x="0" y="0" width="45.149" height="43.347" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-opacity="0.333"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Icon_ionic-ios-heart)">
+    <path id="Icon_ionic-ios-heart-2" data-name="Icon ionic-ios-heart" d="M26.138,3.938h-.075c-2.973,0-5.6,2.138-7.113,4.413-1.513-2.274-4.141-4.413-7.113-4.413h-.149a8.365,8.365,0,0,0-8.313,8.29c0,2.715,1.695,6.566,4.061,9.736A67.078,67.078,0,0,0,18.949,33.285S27.306,26.372,30.6,21.964c2.366-3.169,3.927-7.021,3.927-9.736A8.38,8.38,0,0,0,26.138,3.938Z" transform="translate(3.63 2.06)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" opacity="0.998"/>
+  </g>
+</svg>
