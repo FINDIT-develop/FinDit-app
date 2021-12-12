@@ -4,12 +4,15 @@ import 'package:FinDit/views/constants/constants.dart';
 import 'package:FinDit/controllers/home_controller.dart';
 import 'package:FinDit/controllers/product_controller.dart';
 import 'package:FinDit/controllers/video_detail_controller.dart';
+import 'package:FinDit/views/find/find_screen.dart';
 import 'package:FinDit/views/product_detail/product_detail_screen.dart';
 import 'package:FinDit/views/store/components/item_card.dart';
 import 'package:FinDit/views/widgets/dialog_helper.dart';
 import 'package:FinDit/views/widgets/primary_button.dart';
+import 'package:FinDit/views/widgets/secondary_button.dart';
 import 'package:FinDit/views/widgets/webview.dart';
 import 'package:FinDit/views/widgets/video_widget.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -43,6 +46,10 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
               ),
             ],
           ),
+          // Text(
+          //   controller.video.value.snippet!.description!,
+          //   style: TextStyle(color: Colors.grey),
+          // ),
           SizedBox(
             height: 10,
           ),
@@ -72,7 +79,10 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
                 padding: const EdgeInsets.only(left: 10.0, right: 5),
                 child: InkWell(
                     onTap: () {},
-                    child: SvgPicture.asset("assets/icons/like_active.svg")),
+                    child: SvgPicture.asset(
+                      "assets/icons/like_active.svg",
+                      height: 20,
+                    )),
               ),
             ],
           ),
@@ -134,11 +144,7 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   )),
-              actions: [
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.link))
-              ],
+              actions: [IconButton(onPressed: () {}, icon: Icon(Icons.link))],
               floating: true,
               snap: false,
               toolbarHeight: 50,
@@ -173,36 +179,111 @@ class VideoDetailScreen extends GetView<YoutubeDetailController> {
                     )),
               ),
             ),
-            //_inthisvideo(),
             SliverToBoxAdapter(
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.all(kDefaultPadding),
-                  child: PrimaryButton(
-                    text: "AI로 의류 찾기",
-                    onTap: () async {
-                      var path = await NativeScreenshot.takeScreenshot();
-
-                      debugPrint('Screenshot taken, path: $path');
-
-                      if (path == null || path.isEmpty) {
-                        DialogHelper.showErrSnackbar(
-                            description: 'Error taking the screenshot :(');
-                        return;
-                      } // if error
-                      DialogHelper.showErrSnackbar(
-                          title: '캡쳐 완료',
-                          description:
-                              'The screenshot has been saved to: $path');
-
-                      var imgFile = File(path);
-                      _imgHolder = Image.file(imgFile);
-                    },
-                  ),
+                child: Column(
+              children: [
+                SizedBox(
+                  height: 50,
                 ),
-              ),
-            ),
+                Text(
+                  "영상 속 옷이 궁금하다면 \n직접 찾아보세요!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: kTextColor),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Get.dialog(AlertDialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      elevation: 0,
+                      backgroundColor: Colors.white,
+                      title: Column(
+                        children: [
+                          Text(
+                            "00:00에서 나온 옷이 궁금하신가요?",
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          SizedBox(height: 30),
+                          CachedNetworkImage(
+                              imageUrl:
+                                  "https://i.ytimg.com/vi/Rq6MLuEa33k/hqdefault.jpg"),
+                        ],
+                      ),
+                      actionsAlignment: MainAxisAlignment.center,
+                      actions: [
+                        Container(
+                          width: 130,
+                          child: TextButton(
+                              onPressed: () => Get.back(),
+                              child: Text(
+                                "다음에 찾을게요.",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: kTextColor,
+                                    fontWeight: FontWeight.w600),
+                              )),
+                        ),
+                        Container(
+                          width: 130,
+                          child: TextButton(
+                            child: Text(
+                              "찾아볼래요!",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            ),
+                            onPressed: () {
+                              Get.back();
+                              Get.to(() => FindScreen());
+                            },
+                          ),
+                        )
+                      ],
+                    ));
+                  },
+                  child: CircleAvatar(
+                    backgroundColor: kActiveColor,
+                    foregroundColor: Colors.white,
+                    radius: 25,
+                    child: Icon(Icons.search),
+                  ),
+                )
+              ],
+            )),
+
+            //_inthisvideo(),
+            // SliverToBoxAdapter(
+            //   child: Align(
+            //     alignment: Alignment.bottomCenter,
+            //     child: Padding(
+            //       padding: const EdgeInsets.all(kDefaultPadding),
+            //       child: PrimaryButton(
+            //         text: "AI로 의류 찾기",
+            //         onTap: () async {
+            //           var path = await NativeScreenshot.takeScreenshot();
+
+            //           debugPrint('Screenshot taken, path: $path');
+
+            //           if (path == null || path.isEmpty) {
+            //             DialogHelper.showErrSnackbar(
+            //                 description: 'Error taking the screenshot :(');
+            //             return;
+            //           } // if error
+            //           DialogHelper.showErrSnackbar(
+            //               title: '캡쳐 완료',
+            //               description:
+            //                   'The screenshot has been saved to: $path');
+
+            //           var imgFile = File(path);
+            //           _imgHolder = Image.file(imgFile);
+            //         },
+            //       ),
+            //     ),
+            //   ),
+            // ),
             // SliverToBoxAdapter(
             //   child: Divider(
             //     thickness: 0.75,
